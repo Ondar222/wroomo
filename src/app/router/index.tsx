@@ -2,14 +2,28 @@ import { Route, Routes } from "react-router-dom";
 import App from "../../App";
 import VehicleDetailPage from "../../components/pages/VehicleDetailPage";
 import NotFoundPage from "../../components/pages/NotFoundPage";
+import MotorcycleDetailPage from "../../components/pages/moto/MotorcycleDetailPage";
+import CarsPage from "../../components/pages/cars/CarsPage";
+import CarDetailPage from "../../components/pages/cars/CarDetailPage";
+import MotorcyclesPage from "../../components/pages/moto/MotorcyclesPage";
 
 const Router = () => (
   <Routes>
     <Route path="/" element={<App />} />
-    <Route path="/vehicle/:id" element={<VehicleDetailPage />} />{" "}
-    {/* Добавил параметр :id */}
-    <Route path="*" element={<NotFoundPage />} />{" "}
+
+    {/* Страницы мотоциклов */}
+    <Route path="/moto" element={<MotorcyclesPage />} />
+    <Route path="/moto/:id" element={<MotorcycleDetailPage />} />
+
+    {/* Страницы автомобилей */}
+    <Route path="/cars" element={<CarsPage />} />
+    <Route path="/cars/:id" element={<CarDetailPage />} />
+
+    {/* Общий маршрут для детальной страницы транспортного средства (если нужно) */}
+    <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
+
     {/* Ловим все несуществующие маршруты */}
+    <Route path="*" element={<NotFoundPage />} />
   </Routes>
 );
 

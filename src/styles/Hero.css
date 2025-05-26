@@ -1,0 +1,230 @@
+/* Hero.css */
+
+.hero-container {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  background: linear-gradient(to right, #1a365d, #2a4365);
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: url("https://images.pexels.com/photos/2526128/pexels-photo-2526128.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  opacity: 0.3;
+}
+
+.hero-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 10;
+  max-width: 768px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .hero-text h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-text h1 {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+/* Search Form */
+.search-form {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .search-form {
+    padding: 1.5rem;
+  }
+}
+
+.search-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .search-form-row {
+    flex-direction: row;
+  }
+}
+
+.search-form-group {
+  flex: 1;
+}
+
+.search-form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.search-input-container {
+  position: relative;
+}
+
+.search-input-container input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.search-input-container input:focus {
+  border-color: #4299e1;
+  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  width: 18px;
+  height: 18px;
+}
+
+.search-form-group input[type="date"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.search-form-group input[type="date"]:focus {
+  border-color: #4299e1;
+  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
+}
+
+.search-button-container {
+  align-self: flex-end;
+}
+
+.search-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: #2b6cb0;
+  color: white;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) {
+  .search-button {
+    width: auto;
+  }
+}
+
+.search-button:hover {
+  background-color: #2c5282;
+}
+
+/* Vehicle Type Selection */
+.vehicle-type-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.vehicle-type-buttons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.vehicle-type-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: #374151;
+  border-radius: 0.375rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.vehicle-type-button:hover {
+  background-color: #f3f4f6;
+}
+
+.vehicle-type-button.active {
+  background-color: #ebf8ff;
+  color: #2b6cb0;
+}
+
+.vehicle-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Badges */
+.badges-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 0.875rem;
+}

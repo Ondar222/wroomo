@@ -54,7 +54,7 @@ const NavLinks: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
 
   const links = [
     { href: "/", text: t.home },
-    { href: "/bikes", text: t.bikes },
+    { href: "/moto", text: t.bikes },
     { href: "/cars", text: t.cars },
     { href: "/locations", text: t.locations },
     { href: "/about", text: t.about },
