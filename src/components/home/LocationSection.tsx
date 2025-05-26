@@ -79,13 +79,13 @@ const LocationCard: React.FC<LocationProps> = ({
             href={`/bikes/${slug}`}
             className="text-xs px-3 py-1.5 bg-primary-600 hover:bg-primary-700 rounded-full transition-colors"
           >
-            Посмотреть велосипеды
+            Посмотреть мото
           </Link>
           <Link
             href={`/cars/${slug}`}
             className="text-xs px-3 py-1.5 bg-white/20 hover:bg-white/30 rounded-full transition-colors"
           >
-            Посмотреть автомобили
+            Посмотреть авто
           </Link>
         </div>
       </div>
