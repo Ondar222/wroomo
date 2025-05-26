@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Send } from "lucide-react";
+import "../../styles/Newsletter.css"; // We'll create this CSS file
 
 const Newsletter: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -16,48 +17,38 @@ const Newsletter: React.FC = () => {
   };
 
   return (
-    <div className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">
-            Будьте в курсе событий
-          </h2>
-          <p className="text-gray-600 mb-8 text-left">
+    <div className="newsletter">
+      <div className="newsletter-container">
+        <div className="newsletter-content">
+          <h2 className="newsletter-title">Будьте в курсе событий</h2>
+          <p className="newsletter-description">
             Подпишитесь на нашу рассылку новостей, чтобы получать эксклюзивные
             предложения, советы путешественникам и уведомления о новых
             транспортных средствах.
           </p>
 
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-          >
-            <div className="relative flex-grow">
+          <form onSubmit={handleSubmit} className="newsletter-form">
+            <div className="newsletter-input-container">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Ваш адрес электронной почты"
-                className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                className="newsletter-input"
                 required
               />
             </div>
-            <button
-              type="submit"
-              className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-md transition-colors duration-300 flex items-center justify-center"
-            >
+            <button type="submit" className="newsletter-button">
               Подписаться
-              <Send size={16} className="ml-2" />
+              <Send size={16} className="newsletter-icon" />
             </button>
           </form>
 
           {isSubmitted && (
-            <div className="mt-4 text-green-600 animate-fade-in">
-              Спасибо за подписку!
-            </div>
+            <div className="newsletter-success">Спасибо за подписку!</div>
           )}
 
-          <p className="text-xs text-gray-500 mt-4 text-left">
+          <p className="newsletter-disclaimer">
             Подписываясь, вы соглашаетесь с нашей политикой конфиденциальности и
             даете согласие на получение обновлений от нашей компании.
           </p>

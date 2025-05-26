@@ -1,0 +1,175 @@
+/* Base card styles */
+.vehicle-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.vehicle-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Image container */
+.vehicle-image-container {
+  position: relative;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+
+/* Type badge */
+.vehicle-type-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+}
+
+.type-label {
+  display: inline-block;
+  background-color: #2563eb;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+}
+
+/* Details section */
+.vehicle-details {
+  padding: 1rem;
+}
+
+/* Header section */
+.vehicle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.vehicle-name-link {
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.vehicle-name-link:hover {
+  color: #2563eb;
+}
+
+.vehicle-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Rating */
+.vehicle-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star-icon {
+  color: #f59e0b;
+  fill: currentColor;
+}
+
+.rating-value {
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.review-count {
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+/* Meta information */
+.vehicle-meta {
+  display: flex;
+  align-items: center;
+  color: #4b5563;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.location-icon {
+  margin-right: 0.25rem;
+}
+
+.separator {
+  margin: 0 0.5rem;
+}
+
+/* Specifications section */
+.vehicle-specs-section {
+  border-top: 1px solid #f3f4f6;
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.specs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.spec-badge {
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  padding: 0.25rem 0.5rem;
+}
+
+.spec-icon {
+  margin-right: 0.25rem;
+}
+
+/* Price and button */
+.price-and-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-value {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.price-unit {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-left: 0.25rem;
+}
+
+.details-button {
+  padding: 0.375rem 0.75rem;
+  background-color: #2563eb;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+  background-color: #1d4ed8;
+}
