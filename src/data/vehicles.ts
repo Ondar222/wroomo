@@ -163,7 +163,7 @@ export const motorcycles: MotorcycleType[] = [
     image: 'https://images.pexels.com/photos/221299/pexels-photo-221299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     images: [
       'https://images.pexels.com/photos/221299/pexels-photo-221299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/1118866/pexels-photo-1118866.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/221299/pexels-photo-221299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     ],
     price: 20,
     currency: '$',
@@ -266,7 +266,7 @@ export const cars: CarType[] = [
     image: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     images: [
       'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/6056185/pexels-photo-6056185.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     ],
     price: 35,
     currency: '$',
