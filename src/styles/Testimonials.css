@@ -1,0 +1,157 @@
+/* Основные стили секции */
+.testimonials-section {
+  padding: 4rem 0;
+  background-color: #f9fafb;
+}
+
+.testimonials-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Заголовок секции */
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.testimonials-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.testimonials-subtitle {
+  color: #4b5563;
+  max-width: 42rem;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Сетка отзывов */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Карточка отзыва */
+.testimonial-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.testimonial-avatar-container {
+  flex-shrink: 0;
+  margin-right: 1rem;
+}
+
+.testimonial-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  object-fit: cover;
+}
+
+.testimonial-user-info {
+  flex: 1;
+}
+
+.testimonial-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+  color: #111827;
+}
+
+.testimonial-location-date {
+  display: flex;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.testimonial-location {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-right: 0.5rem;
+}
+
+.testimonial-date {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.testimonial-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.testimonial-star {
+  margin-right: 0.125rem;
+}
+
+.testimonial-star-filled {
+  color: #f59e0b;
+  fill: currentColor;
+}
+
+.testimonial-star-half-filled {
+  color: #f59e0b;
+  fill: currentColor;
+  opacity: 0.5;
+}
+
+.testimonial-star-empty {
+  color: #e5e7eb;
+}
+
+.testimonial-quote-icon {
+  color: #bfdbfe;
+  margin-left: auto;
+}
+
+.testimonial-text {
+  color: #374151;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Кнопка "Просмотреть все отзывы" */
+.testimonials-footer {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.testimonials-view-all-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  background-color: transparent;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.testimonials-view-all-button:hover {
+  background-color: #eff6ff;
+}

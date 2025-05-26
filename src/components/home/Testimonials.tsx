@@ -1,5 +1,6 @@
 import React from "react";
 import { Star, Quote } from "lucide-react";
+import "../../styles/Testimonials.css";
 
 interface TestimonialProps {
   name: string;
@@ -49,68 +50,62 @@ const TestimonialCard: React.FC<TestimonialProps> = ({
   date,
 }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <div className="flex items-start mb-4">
-        <div className="flex-shrink-0 mr-4">
-          <img
-            src={image}
-            alt={name}
-            className="w-14 h-14 rounded-full object-cover"
-          />
+    <div className="testimonial-card">
+      <div className="testimonial-header">
+        <div className="testimonial-avatar-container">
+          <img src={image} alt={name} className="testimonial-avatar" />
         </div>
-        <div>
-          <h4 className="font-semibold text-lg">{name}</h4>
-          <div className="flex items-center">
-            <span className="text-sm text-gray-600 mr-2">{location}</span>
-            <span className="text-xs text-gray-500">{date}</span>
+        <div className="testimonial-user-info">
+          <h4 className="testimonial-name">{name}</h4>
+          <div className="testimonial-location-date">
+            <span className="testimonial-location">{location}</span>
+            <span className="testimonial-date">{date}</span>
           </div>
-          <div className="flex items-center mt-1">
+          <div className="testimonial-rating">
             {Array(5)
               .fill(0)
               .map((_, i) => (
                 <Star
                   key={i}
                   size={14}
-                  className={`${
+                  className={`testimonial-star ${
                     i < Math.floor(rating)
-                      ? "text-yellow-500 fill-current"
+                      ? "testimonial-star-filled"
                       : i < rating
-                      ? "text-yellow-500 fill-current opacity-50"
-                      : "text-gray-300"
+                      ? "testimonial-star-half-filled"
+                      : "testimonial-star-empty"
                   }`}
                 />
               ))}
           </div>
         </div>
-        <Quote size={24} className="ml-auto text-primary-200" />
+        <Quote className="testimonial-quote-icon" size={24} />
       </div>
-      <p className="text-gray-700">{text}</p>
+      <p className="testimonial-text">{text}</p>
     </div>
   );
 };
 
 const Testimonials: React.FC = () => {
   return (
-    <div className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">
-            Что говорят наши клиенты
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+    <div className="testimonials-section">
+      <div className="testimonials-container">
+        <div className="testimonials-header">
+          <h2 className="testimonials-title">Что говорят наши клиенты</h2>
+          <p className="testimonials-subtitle">
             Не верьте нам на слово. Вот что думают путешественники, которые
             воспользовались нашим сервисом.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="testimonials-grid">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          <button className="px-6 py-3 border-2 border-primary-600 text-primary-600 hover:bg-primary-50 rounded-md transition-colors font-medium">
+        <div className="testimonials-footer">
+          <button className="testimonials-view-all-button">
             Просмотреть все отзывы
           </button>
         </div>

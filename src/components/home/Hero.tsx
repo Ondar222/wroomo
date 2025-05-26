@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { Search, Recycle as Motorcycle, Car } from "lucide-react";
 
 const Hero: React.FC = () => {
+  const [searchParams, setSearchParams] = useState({
+    location: "",
+    date: "",
+    vehicleType: "motorcycle", // 'motorcycle' или 'car'
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setSearchParams((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleVehicleTypeChange = (type: string) => {
+    setSearchParams((prev) => ({
+      ...prev,
+      vehicleType: type,
+    }));
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Параметры поиска:", searchParams);
+    // Здесь можно добавить логику для выполнения поиска
+    // Например, переход на страницу результатов с этими параметрами
+  };
+
   return (
     <div className="relative h-screen min-h-[600px] bg-gradient-to-r from-primary-900 to-primary-700 overflow-hidden">
       {/* Background image with overlay */}
@@ -25,7 +53,10 @@ const Hero: React.FC = () => {
           </p>
 
           {/* Search Form */}
-          <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+          <form
+            onSubmit={handleSearch}
+            className="bg-white rounded-lg shadow-lg p-4 md:p-6"
+          >
             <div className="flex flex-col md:flex-row gap-4">
               <div className="flex-1">
                 <label
@@ -38,8 +69,11 @@ const Hero: React.FC = () => {
                   <input
                     type="text"
                     id="location"
+                    value={searchParams.location}
+                    onChange={handleInputChange}
                     placeholder="Поиск.."
                     className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 pl-10"
+                    required
                   />
                   <Search
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -58,12 +92,18 @@ const Hero: React.FC = () => {
                 <input
                   type="date"
                   id="date"
+                  value={searchParams.date}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  required
                 />
               </div>
 
               <div className="self-end">
-                <button className="w-full md:w-auto px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-md transition-colors duration-300 shadow-md">
+                <button
+                  type="submit"
+                  className="w-full md:w-auto px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-md transition-colors duration-300 shadow-md"
+                >
                   Поиск
                 </button>
               </div>
@@ -72,17 +112,33 @@ const Hero: React.FC = () => {
             {/* Vehicle Type Selection */}
             <div className="flex justify-center mt-4 border-t pt-4">
               <div className="flex space-x-6">
-                <button className="flex items-center space-x-2 py-2 px-4 bg-primary-50 text-primary-700 font-medium rounded-md">
+                <button
+                  type="button"
+                  onClick={() => handleVehicleTypeChange("motorcycle")}
+                  className={`flex items-center space-x-2 py-2 px-4 ${
+                    searchParams.vehicleType === "motorcycle"
+                      ? "bg-primary-50 text-primary-700"
+                      : "text-gray-700 hover:bg-gray-100"
+                  } font-medium rounded-md transition-colors`}
+                >
                   <Motorcycle size={20} />
-                  <span>Мотоциклы</span>
+                  <span>Мото</span>
                 </button>
-                <button className="flex items-center space-x-2 py-2 px-4 text-gray-700 hover:bg-gray-100 font-medium rounded-md transition-colors">
+                <button
+                  type="button"
+                  onClick={() => handleVehicleTypeChange("car")}
+                  className={`flex items-center space-x-2 py-2 px-4 ${
+                    searchParams.vehicleType === "car"
+                      ? "bg-primary-50 text-primary-700"
+                      : "text-gray-700 hover:bg-gray-100"
+                  } font-medium rounded-md transition-colors`}
+                >
                   <Car size={20} />
                   <span>Авто</span>
                 </button>
               </div>
             </div>
-          </div>
+          </form>
 
           {/* Badges */}
           <div className="flex justify-center items-center space-x-4 mt-8">
