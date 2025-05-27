@@ -6,10 +6,18 @@ import MotorcycleDetailPage from "../../components/pages/moto/MotorcycleDetailPa
 import CarsPage from "../../components/pages/cars/CarsPage";
 import CarDetailPage from "../../components/pages/cars/CarDetailPage";
 import MotorcyclesPage from "../../components/pages/moto/MotorcyclesPage";
+import LoginPage from "../../components/pages/LoginPage";
+import RegisterPage from "../../components/pages/register/RegisterPage";
+import RegisterTypePage from "../../components/pages/register/RegisterTypePage";
 
 const Router = () => (
   <Routes>
     <Route path="/" element={<App />} />
+
+    {/* /авторизация */}
+    <Route path="/login" element={<LoginPage />} />
+    <Route path="/register" element={<RegisterPage />} />
+    <Route path="/register/type" element={<RegisterTypePage />} />
 
     {/* Страницы мотоциклов */}
     <Route path="/moto" element={<MotorcyclesPage />} />

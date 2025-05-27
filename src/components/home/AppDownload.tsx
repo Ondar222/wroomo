@@ -3,22 +3,20 @@ import { Phone, ArrowRight } from "lucide-react";
 
 const AppDownload: React.FC = () => {
   return (
-    <div className="py-16 bg-primary-900 text-white">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="lg:w-1/2 mb-8 lg:mb-0">
-            <h2 className="text-3xl font-bold mb-4">
-              Скачайте наше мобильное приложение
-            </h2>
-            <p className="text-primary-100 mb-6 max-w-lg">
+    <div className="app-download">
+      <div className="container">
+        <div className="content-wrapper">
+          <div className="text-content">
+            <h2 className="title">Скачайте наше мобильное приложение</h2>
+            <p className="description">
               Возьмите с собой в дорогу авто напрокат. Наше мобильное приложение
               делает это еще более удобным вам будет проще находить, бронировать
               и управлять арендой автомобиля - и все это из вашего смартфона.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="flex items-center space-x-3 bg-white text-primary-900 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors">
-                <div className="text-3xl">
+            <div className="buttons-container">
+              <button className="download-button">
+                <div className="icon">
                   <svg
                     width="24"
                     height="24"
@@ -36,14 +34,14 @@ const AppDownload: React.FC = () => {
                     />
                   </svg>
                 </div>
-                <div className="text-left">
-                  <div className="text-xs">Если айфон:</div>
-                  <div className="text-base font-semibold">App Store</div>
+                <div className="button-text">
+                  <div className="button-subtitle">Если айфон:</div>
+                  <div className="button-title">App Store</div>
                 </div>
               </button>
 
-              <button className="flex items-center space-x-3 bg-white text-primary-900 px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors">
-                <div className="text-3xl">
+              <button className="download-button">
+                <div className="icon">
                   <svg
                     width="24"
                     height="24"
@@ -61,54 +59,52 @@ const AppDownload: React.FC = () => {
                     />
                   </svg>
                 </div>
-                <div className="text-left">
-                  <div className="text-xs">Если Android:</div>
-                  <div className="text-base font-semibold">Google Play</div>
+                <div className="button-text">
+                  <div className="button-subtitle">Если Android:</div>
+                  <div className="button-title">Google Play</div>
                 </div>
               </button>
             </div>
 
-            <div className="mt-8 flex items-center">
-              <div className="flex -space-x-2">
+            <div className="users-info">
+              <div className="user-avatars">
                 <img
                   src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="User"
-                  className="w-10 h-10 rounded-full border-2 border-primary-900 object-cover"
+                  className="avatar"
                 />
                 <img
                   src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="User"
-                  className="w-10 h-10 rounded-full border-2 border-primary-900 object-cover"
+                  className="avatar"
                 />
                 <img
                   src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   alt="User"
-                  className="w-10 h-10 rounded-full border-2 border-primary-900 object-cover"
+                  className="avatar"
                 />
               </div>
-              <div className="ml-4">
-                <div className="text-primary-100 text-sm">
+              <div className="users-text">
+                <div className="users-count">
                   К нам присоединились более 10 000 пользователей
                 </div>
-                <div className="flex items-center text-sm">
-                  <Star size={16} className="text-yellow-400 fill-current" />
-                  <Star size={16} className="text-yellow-400 fill-current" />
-                  <Star size={16} className="text-yellow-400 fill-current" />
-                  <Star size={16} className="text-yellow-400 fill-current" />
-                  <Star size={16} className="text-yellow-400 fill-current" />
-                  <span className="ml-1 text-primary-100">4.9/5 рейтинг</span>
+                <div className="rating">
+                  <Star size={16} className="star" />
+                  <Star size={16} className="star" />
+                  <Star size={16} className="star" />
+                  <Star size={16} className="star" />
+                  <Star size={16} className="star" />
+                  <span className="rating-text">4.9/5 рейтинг</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="lg:w-1/2 flex justify-center lg:justify-end">
-            <div className="relative w-64 h-96">
-              <div className="absolute top-0 right-0 w-full h-full bg-primary-800 rounded-xl transform rotate-6"></div>
-              <div className="absolute top-0 left-0 w-full h-full bg-primary-700 rounded-xl -rotate-3"></div>
-              <div className="relative w-full h-full bg-primary-600 rounded-xl overflow-hidden flex items-center justify-center">
-                <Phone size={48} className="text-primary-200" />
-              </div>
+          <div className="phone-preview">
+            <div className="phone-background phone-bg-1"></div>
+            <div className="phone-background phone-bg-2"></div>
+            <div className="phone-image">
+              <Phone size={48} className="phone-icon" />
             </div>
           </div>
         </div>
@@ -126,8 +122,213 @@ const Star = ({ size, className }: { size: number; className?: string }) => (
     width={size}
     height={size}
     viewBox="0 0 24 24"
-    className={className}
+    className={`star-icon ${className}`}
   >
     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
   </svg>
 );
+
+// CSS styles
+const styles = `
+.app-download {
+  padding: 4rem 0;
+  background-color: #1a365d;
+  color: white;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 1024px) {
+  .content-wrapper {
+    flex-direction: row;
+  }
+}
+
+.text-content {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .text-content {
+    width: 50%;
+    margin-bottom: 0;
+  }
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.description {
+  color: #a0aec0;
+  margin-bottom: 1.5rem;
+  max-width: 32rem;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .buttons-container {
+    flex-direction: row;
+  }
+}
+
+.download-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: white;
+  color: #1a365d;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.download-button:hover {
+  background-color: #f7fafc;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.button-text {
+  text-align: left;
+}
+
+.button-subtitle {
+  font-size: 0.75rem;
+}
+
+.button-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.users-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatars {
+  display: flex;
+  margin-right: 1rem;
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 2px solid #1a365d;
+  object-fit: cover;
+  margin-left: -0.5rem;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.users-text {
+  margin-left: 1rem;
+}
+
+.users-count {
+  color: #a0aec0;
+  font-size: 0.875rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.star-icon {
+  color: #f6e05e;
+  fill: currentColor;
+}
+
+.rating-text {
+  margin-left: 0.25rem;
+  color: #a0aec0;
+}
+
+.phone-preview {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 16rem;
+  height: 24rem;
+}
+
+@media (min-width: 1024px) {
+  .phone-preview {
+    width: 50%;
+    justify-content: flex-end;
+  }
+}
+
+.phone-background {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+}
+
+.phone-bg-1 {
+  right: 0;
+  background-color: #2c5282;
+  transform: rotate(6deg);
+}
+
+.phone-bg-2 {
+  left: 0;
+  background-color: #3182ce;
+  transform: rotate(-3deg);
+}
+
+.phone-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #4299e1;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-icon {
+  color: #bee3f8;
+}
+`;
+
+// Inject styles
+const styleElement = document.createElement("style");
+styleElement.innerHTML = styles;
+document.head.appendChild(styleElement);
