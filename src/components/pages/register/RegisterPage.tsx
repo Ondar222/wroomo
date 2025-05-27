@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Link from "next/link";
+import { Link } from "../../common/Link";
 import { useLanguage } from "../context/LanguageContext";
 import "../../../styles/AuthPages.css";
 
@@ -205,9 +205,9 @@ const RegisterPage: React.FC = () => {
         </form>
       </div>
 
-      <footer className="auth-footer">
+      <div className="auth-footer">
         Copyright © 2024 Wroomo. All Rights Reserved.
-      </footer>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
-import Link from "next/link";
+// import Link from "next/link";
 // import { Link } from "../../common/Link";
+import { Link } from "../../common/Link";
 import { useLanguage } from "../context/LanguageContext";
 import "../../../styles/AuthPages.css";
 
@@ -33,9 +34,9 @@ const RegisterTypePage: React.FC = () => {
         </div>
       </div>
 
-      <footer className="auth-footer">
+      <div className="auth-footer">
         Copyright © 2024 Wroomo. All Rights Reserved.
-      </footer>
+      </div>
     </div>
   );
 };

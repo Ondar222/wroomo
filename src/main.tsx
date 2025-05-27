@@ -26,9 +26,7 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <MainLayout>
-        <Router />
-      </MainLayout>
+      <Router />
     </BrowserRouter>
   </React.StrictMode>
 );
