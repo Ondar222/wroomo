@@ -48,6 +48,21 @@
   gap: 2rem;
 }
 
+.logout-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logout-button:hover {
+  color: #1d4ed8;
+}
+
 @media (min-width: 768px) {
   .desktop-nav {
     display: flex;
@@ -111,6 +126,12 @@
   display: none;
   align-items: center;
   gap: 1rem;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 @media (min-width: 768px) {
@@ -218,4 +239,10 @@
 
 .mobile-register-button:hover {
   background-color: #1d4ed8;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

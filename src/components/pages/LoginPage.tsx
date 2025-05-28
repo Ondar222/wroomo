@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const email = login.trim().toLowerCase(); // 👈 фикс
+    const email = login.trim().toLowerCase();
     const pwd = password;
 
     if (!email || !pwd) {
@@ -31,7 +31,11 @@ const LoginPage: React.FC = () => {
       await signInWithEmailAndPassword(auth, email, pwd);
       setSuccessMessage("Вы успешно вошли!");
       setErrorMessage("");
-      setTimeout(() => navigate("/"), 1000);
+
+      // Перенаправление на Dashboard
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1000);
     } catch (error: any) {
       const errorCode = error.code;
       if (errorCode === "auth/invalid-email") {
@@ -62,8 +66,8 @@ const LoginPage: React.FC = () => {
             <input
               type="email"
               id="login"
-              name="email" // ✅ Важно для автозаполнения
-              autoComplete="email" // ✅ Поддержка автозаполнения
+              name="email"
+              autoComplete="email"
               value={login}
               onChange={(e) => setLogin(e.target.value)}
               required
@@ -75,8 +79,8 @@ const LoginPage: React.FC = () => {
             <input
               type="password"
               id="password"
-              name="current-password" // ✅ для логина. Для регистрации — "new-password"
-              autoComplete="current-password" // ✅ Поддержка автозаполнения
+              name="current-password"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

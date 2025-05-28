@@ -1,10 +1,10 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
-import { Menu, X, ChevronDown, Globe, User } from "lucide-react";
-import { Link } from "../common/Link";
+import { Menu, X, ChevronDown, Globe, User, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/Header.css";
 import { useAuth } from "../pages/context/AuthContext";
 
-// Define translations
+// Переводы
 const translations = {
   en: {
     home: "Home",
@@ -16,6 +16,8 @@ const translations = {
     register: "Register",
     language: "Language",
     dashboard: "Dashboard",
+    logout: "Logout",
+    logoutSuccess: "You have been logged out.",
   },
   ru: {
     home: "Главная",
@@ -27,6 +29,8 @@ const translations = {
     register: "Регистрация",
     language: "Язык",
     dashboard: "Панель управления",
+    logout: "Выход",
+    logoutSuccess: "Вы вышли из системы.",
   },
   th: {
     home: "หน้าหลัก",
@@ -38,10 +42,12 @@ const translations = {
     register: "ลงทะเบียน",
     language: "ภาษา",
     dashboard: "แดชบอร์ด",
+    logout: "ออกจากระบบ",
+    logoutSuccess: "คุณได้ออกจากระบบแล้ว",
   },
 };
 
-// Create context for language
+// Контекст языка
 const LanguageContext = createContext<{
   language: keyof typeof translations;
   setLanguage: (lang: keyof typeof translations) => void;
@@ -50,11 +56,10 @@ const LanguageContext = createContext<{
   setLanguage: () => {},
 });
 
-// Navigation links component to avoid duplication
-const NavLinks: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
+// Навигационные ссылки
+const NavLinks: React.FC<{ showDashboard?: boolean }> = ({ showDashboard }) => {
   const { language } = useContext(LanguageContext);
   const t = translations[language];
-  const LinkComponent = isMobile ? "div" : "nav";
 
   const links = [
     { href: "/", text: t.home },
@@ -64,18 +69,18 @@ const NavLinks: React.FC<{ isMobile?: boolean }> = ({ isMobile = false }) => {
     { href: "/about", text: t.about },
   ];
 
+  if (showDashboard) {
+    links.push({ href: "/dashboard", text: t.dashboard });
+  }
+
   return (
-    <LinkComponent className={isMobile ? "mobile-nav" : "desktop-nav"}>
+    <nav className="desktop-nav">
       {links.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={isMobile ? "mobile-nav-link" : "nav-link"}
-        >
+        <Link key={link.href} to={link.href} className="nav-link">
           {link.text}
         </Link>
       ))}
-    </LinkComponent>
+    </nav>
   );
 };
 
@@ -84,15 +89,15 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const { language, setLanguage } = useContext(LanguageContext);
-  const { user } = useAuth();
+  const { user, logout } = useAuth(); // ← ОБЯЗАТЕЛЬНО без опечаток
+
   const t = translations[language];
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 20);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -103,21 +108,35 @@ const Header: React.FC = () => {
   const changeLanguage = (lang: keyof typeof translations) => {
     setLanguage(lang);
     setLanguageMenuOpen(false);
-    if (isMenuOpen) setIsMenuOpen(false);
+    setIsMenuOpen(false);
+  };
+
+  const handleDashboardClick = () => {
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+    setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout(); // из useAuth
+    toast.success("Вы вышли из аккаунта");
+    navigate("/");
+    setIsMenuOpen(false);
   };
 
   return (
     <header className={`header ${isScrolled ? "header-scrolled" : ""}`}>
       <div className="header-container">
         <div className="header-content">
-          <Link href="/" className="header-logo">
+          <Link to="/" className="header-logo">
             <span className="logo-text">Woomo</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <NavLinks />
+          <NavLinks showDashboard={!!user} />
 
-          {/* Language Selector */}
           <div className="language-menu-container">
             <button onClick={toggleLanguageMenu} className="language-toggle">
               <Globe size={18} />
@@ -126,54 +145,42 @@ const Header: React.FC = () => {
             </button>
             {languageMenuOpen && (
               <div className="language-dropdown">
-                <button
-                  onClick={() => changeLanguage("en")}
-                  className="language-option"
-                >
-                  English
-                </button>
-                <button
-                  onClick={() => changeLanguage("ru")}
-                  className="language-option"
-                >
-                  Русский
-                </button>
-                <button
-                  onClick={() => changeLanguage("th")}
-                  className="language-option"
-                >
-                  ไทย
-                </button>
+                <button onClick={() => changeLanguage("en")}>English</button>
+                <button onClick={() => changeLanguage("ru")}>Русский</button>
+                <button onClick={() => changeLanguage("th")}>ไทย</button>
               </div>
             )}
           </div>
 
-          {/* Auth Buttons */}
           <div className="auth-buttons">
-            <Link href="/login" className="login-button">
-              <User size={18} className="icon" />
-              {t.login}
-            </Link>
-            <Link href="/register" className="register-button">
-              {t.register}
-            </Link>
-            {user && (
-              <Link href="/dashboard" className="dashboard-button">
-                {t.dashboard}
-              </Link>
+            {!user ? (
+              <>
+                <Link to="/login" className="login-button">
+                  <User size={18} className="icon" />
+                  {t.login}
+                </Link>
+                <Link to="/register" className="register-button">
+                  {t.register}
+                </Link>
+              </>
+            ) : (
+              <>
+                <button onClick={handleLogout} className="logout-button">
+                  <User size={18} className="icon" />
+                  {t.logout}
+                </button>
+              </>
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button className="mobile-menu-button" onClick={toggleMenu}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="mobile-menu">
-            <NavLinks isMobile />
+            <NavLinks showDashboard={!!user} />
             <div className="mobile-language-section">
               <button className="mobile-language-button">
                 <Globe size={18} />
@@ -182,39 +189,36 @@ const Header: React.FC = () => {
                 </span>
               </button>
               <div className="mobile-language-options">
-                <button
-                  onClick={() => changeLanguage("en")}
-                  className="mobile-language-option"
-                >
-                  English
-                </button>
-                <button
-                  onClick={() => changeLanguage("ru")}
-                  className="mobile-language-option"
-                >
-                  Русский
-                </button>
-                <button
-                  onClick={() => changeLanguage("th")}
-                  className="mobile-language-option"
-                >
-                  ไทย
-                </button>
+                <button onClick={() => changeLanguage("en")}>English</button>
+                <button onClick={() => changeLanguage("ru")}>Русский</button>
+                <button onClick={() => changeLanguage("th")}>ไทย</button>
               </div>
             </div>
+
             <div className="mobile-auth-section">
-              {user ? (
-                <Link href="/dashboard" className="mobile-nav-link">
-                  {t.dashboard}
-                </Link>
-              ) : (
+              {!user ? (
                 <>
-                  <Link href="/login" className="mobile-nav-link">
+                  <Link to="/login" className="mobile-nav-link">
                     {t.login}
                   </Link>
-                  <Link href="/register" className="mobile-register-button">
+                  <Link to="/register" className="mobile-register-button">
                     {t.register}
                   </Link>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={handleDashboardClick}
+                    className="mobile-nav-link"
+                  >
+                    {t.dashboard}
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="mobile-nav-link logout-mobile-button"
+                  >
+                    {t.logout}
+                  </button>
                 </>
               )}
             </div>
