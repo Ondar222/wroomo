@@ -3,8 +3,9 @@ import { Link } from "../../common/Link";
 import { useLanguage } from "../context/LanguageContext";
 import "../../../styles/Register.css";
 import UserTypeModal from "../../common/Modal";
-import { auth } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 const RegisterPage: React.FC = () => {
   const { t, language } = useLanguage();
@@ -79,6 +80,7 @@ const RegisterPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!userType) {
       setShowUserTypeModal(true);
       return;
@@ -91,11 +93,22 @@ const RegisterPage: React.FC = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        userType: userType,
+        birthDate: birthDate,
+        createdAt: new Date().toISOString(),
+      });
+
       setSuccessMessage("Вы успешно зарегистрировались!");
       setErrorMessage("");
     } catch (error: any) {
