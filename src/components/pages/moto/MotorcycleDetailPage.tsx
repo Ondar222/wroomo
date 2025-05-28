@@ -1,14 +1,12 @@
 import React from "react";
-// import { useRouter } from "next/router";
-import { useRouter } from "next/router";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { motorcycles } from "../../../data/vehicles";
 import { Star, ArrowLeft, Calendar, MapPin, Users } from "lucide-react";
-import { Link } from "lucide-react";
 import "../../../styles/vehicles.css";
 
 const MotorcycleDetailPage: React.FC = () => {
-  const router = useRouter();
-  const { id } = router.query;
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const motorcycle = motorcycles.find((m) => m.id === id);
 
   if (!motorcycle) {
@@ -17,11 +15,10 @@ const MotorcycleDetailPage: React.FC = () => {
 
   return (
     <div className="motorcycle-detail-page">
-      <div className="back-button-container">
-        <Link href="/moto" className="back-button">
-          <ArrowLeft size={20} /> Назад к списку
-        </Link>
-      </div>
+      <button onClick={() => navigate(-1)} className="back-button">
+        <ArrowLeft size={20} /> Назад к списку
+      </button>
+      <div className="back-button-container"></div>
 
       <div className="motorcycle-gallery">
         <div className="main-image">
@@ -68,7 +65,7 @@ const MotorcycleDetailPage: React.FC = () => {
           <h2>Характеристики</h2>
           <div className="specs-grid">
             <div className="spec-item">
-              <Gear size={20} />
+              {/* <Gear size={20} /> */}
               <div>
                 <div className="spec-name">Трансмиссия</div>
                 <div className="spec-value">

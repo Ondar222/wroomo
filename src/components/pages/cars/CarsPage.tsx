@@ -1,7 +1,7 @@
 import React from "react";
 import { CarType } from "../../../types/vehicle";
 import { cars } from "../../../data/vehicles";
-import Link from "next/link";
+import { Link } from "../../common/Link";
 import { ArrowRight, Star } from "lucide-react";
 import "../../../styles/vehicles.css";
 

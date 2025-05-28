@@ -9,14 +9,14 @@ import AppDownload from "./components/home/AppDownload";
 
 function App() {
   return (
-    <MainLayout>
+    <>
       <Hero />
       <PopularVehicles />
       <LocationSection />
       <HowItWorks />
       <Testimonials />
       <AppDownload />
-    </MainLayout>
+    </>
   );
 }
 
