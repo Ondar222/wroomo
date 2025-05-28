@@ -10,6 +10,7 @@ import LoginPage from "../../components/pages/LoginPage";
 import RegisterPage from "../../components/pages/register/RegisterPage";
 import RegisterTypePage from "../../components/pages/register/RegisterTypePage";
 import LocationsPage from "../../components/pages/LocationPage";
+import DashboardPage from "../../components/pages/admin/DashboardPage";
 
 const Router = () => (
   <Routes>
@@ -17,6 +18,7 @@ const Router = () => (
 
     {/* /авторизация */}
     <Route path="/login" element={<LoginPage />} />
+    <Route path="/dashboard" element={<DashboardPage />} />
     <Route path="/register" element={<RegisterPage />} />
     <Route path="/register/type" element={<RegisterTypePage />} />
 

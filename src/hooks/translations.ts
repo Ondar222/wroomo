@@ -1,7 +1,7 @@
 export const translations = {
     en: {
       // ... существующие переводы ...
-      username: "Username",
+      username: "Login",
       password: "Password",
       confirmPassword: "Confirm Password",
       forgotPassword: "Forgot password?",

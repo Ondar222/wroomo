@@ -4,6 +4,7 @@ import { useLanguage } from "./context/LanguageContext";
 import "../../styles/AuthPages.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
   const { t } = useLanguage();
@@ -12,14 +13,36 @@ const LoginPage: React.FC = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const email = login.trim().toLowerCase(); // 👈 фикс
+    const pwd = password;
+
+    if (!email || !pwd) {
+      setErrorMessage("Введите email и пароль");
+      setSuccessMessage("");
+      return;
+    }
+
     try {
-      await signInWithEmailAndPassword(auth, login, password);
+      await signInWithEmailAndPassword(auth, email, pwd);
       setSuccessMessage("Вы успешно вошли!");
       setErrorMessage("");
+      setTimeout(() => navigate("/"), 1000);
     } catch (error: any) {
-      setErrorMessage("Неверный логин или пароль");
+      const errorCode = error.code;
+      if (errorCode === "auth/invalid-email") {
+        setErrorMessage("Неверный формат email");
+      } else if (errorCode === "auth/user-not-found") {
+        setErrorMessage("Пользователь не найден");
+      } else if (errorCode === "auth/wrong-password") {
+        setErrorMessage("Неверный пароль");
+      } else {
+        setErrorMessage("Ошибка входа: " + error.message);
+      }
       setSuccessMessage("");
     }
   };
@@ -37,8 +60,10 @@ const LoginPage: React.FC = () => {
           <div className="form-group">
             <label htmlFor="login">{t.username}</label>
             <input
-              type="text"
+              type="email"
               id="login"
+              name="email" // ✅ Важно для автозаполнения
+              autoComplete="email" // ✅ Поддержка автозаполнения
               value={login}
               onChange={(e) => setLogin(e.target.value)}
               required
@@ -50,6 +75,8 @@ const LoginPage: React.FC = () => {
             <input
               type="password"
               id="password"
+              name="current-password" // ✅ для логина. Для регистрации — "new-password"
+              autoComplete="current-password" // ✅ Поддержка автозаполнения
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required

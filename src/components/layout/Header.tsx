@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 import { Menu, X, ChevronDown, Globe, User } from "lucide-react";
 import { Link } from "../common/Link";
 import "../../styles/Header.css";
+import { useAuth } from "../pages/context/AuthContext";
 
 // Define translations
 const translations = {
@@ -14,6 +15,7 @@ const translations = {
     login: "Login",
     register: "Register",
     language: "Language",
+    dashboard: "Dashboard",
   },
   ru: {
     home: "Главная",
@@ -24,6 +26,7 @@ const translations = {
     login: "Войти",
     register: "Регистрация",
     language: "Язык",
+    dashboard: "Панель управления",
   },
   th: {
     home: "หน้าหลัก",
@@ -34,6 +37,7 @@ const translations = {
     login: "เข้าสู่ระบบ",
     register: "ลงทะเบียน",
     language: "ภาษา",
+    dashboard: "แดชบอร์ด",
   },
 };
 
@@ -80,6 +84,8 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const { language, setLanguage } = useContext(LanguageContext);
+  const { user } = useAuth();
+  const t = translations[language];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,8 +105,6 @@ const Header: React.FC = () => {
     setLanguageMenuOpen(false);
     if (isMenuOpen) setIsMenuOpen(false);
   };
-
-  const t = translations[language];
 
   return (
     <header className={`header ${isScrolled ? "header-scrolled" : ""}`}>
@@ -153,6 +157,11 @@ const Header: React.FC = () => {
             <Link href="/register" className="register-button">
               {t.register}
             </Link>
+            {user && (
+              <Link href="/dashboard" className="dashboard-button">
+                {t.dashboard}
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -194,12 +203,20 @@ const Header: React.FC = () => {
               </div>
             </div>
             <div className="mobile-auth-section">
-              <Link href="/login" className="mobile-nav-link">
-                {t.login}
-              </Link>
-              <Link href="/register" className="mobile-register-button">
-                {t.register}
-              </Link>
+              {user ? (
+                <Link href="/dashboard" className="mobile-nav-link">
+                  {t.dashboard}
+                </Link>
+              ) : (
+                <>
+                  <Link href="/login" className="mobile-nav-link">
+                    {t.login}
+                  </Link>
+                  <Link href="/register" className="mobile-register-button">
+                    {t.register}
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}

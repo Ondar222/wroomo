@@ -10,7 +10,7 @@ const translations = {
     login: "Login",
     register: "Register",
     language: "Language",
-    username: "Username",
+    username: "Login",
     password: "Password",
     confirmPassword: "Confirm Password",
     forgotPassword: "Forgot password?",
