@@ -1,0 +1,54 @@
+/* Стили для выбора типа пользователя */
+.register-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.register-option {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.register-option:hover {
+  border-color: #4a90e2;
+  background: #f5f9ff;
+}
+
+.register-option h3 {
+  margin: 0;
+  color: #333;
+}
+
+/* Стили для модального окна */
+.user-type-modal {
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.modal-option {
+  padding: 12px 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-option:hover {
+  border-color: #4a90e2;
+  background: #f5f9ff;
+}

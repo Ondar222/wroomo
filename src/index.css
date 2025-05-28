@@ -20,6 +20,22 @@ body {
   min-height: 100vh;
 }
 
+.success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
 /* Custom utility classes */
 @layer components {
   .nav-link {
