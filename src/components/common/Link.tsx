@@ -5,7 +5,7 @@ interface LinkProps {
   children: React.ReactNode;
   className?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
 export const Link: React.FC<LinkProps> = ({
@@ -17,8 +17,7 @@ export const Link: React.FC<LinkProps> = ({
 }) => {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (onClick) {
-      e.preventDefault();
-      onClick();
+      onClick(e); // передаем MouseEvent обратно
     }
   };
 

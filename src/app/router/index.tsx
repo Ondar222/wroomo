@@ -30,6 +30,7 @@ const Router = () => (
 
     {/* Общий маршрут для детальной страницы транспортного средства (если нужно) */}
     <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
+    <Route path="/motorcycles/:id" element={<MotorcycleDetailPage />} />
 
     <Route path="/locations/:slug?" element={<LocationsPage />} />
 

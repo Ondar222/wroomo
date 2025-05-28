@@ -2,7 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motorcycles, cars } from "../../data/vehicles";
 import { MotorcycleType, CarType } from "../../types/vehicle";
+import { ArrowRight } from "lucide-react";
 import "../../styles/LocationPage.css";
+import { Link } from "../common/Link";
 
 const locationImages: Record<string, string> = {
   "Остров Самуи":
@@ -18,20 +20,27 @@ const locationImages: Record<string, string> = {
 const LocationPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const locations = [...motorcycles, ...cars].reduce((acc, vehicle) => {
-    const locationName = vehicle.location;
-    if (!acc[locationName]) {
-      acc[locationName] = {
-        vehicles: [],
-        image:
-          locationImages[locationName] ||
-          "https://images.pexels.com/photos/2393835/pexels-photo-2393835.jpeg",
-      };
-    }
-    acc[locationName].vehicles.push(vehicle);
-    return acc;
-  }, {} as Record<string, { vehicles: (MotorcycleType | CarType)[]; image: string }>);
+  // Объединяем все транспортные средства (мото и авто)
+  const allVehicles: (MotorcycleType | CarType)[] = [...motorcycles, ...cars];
 
+  // Группируем по локациям
+  const locations = React.useMemo(() => {
+    return allVehicles.reduce((acc, vehicle) => {
+      const locationName = vehicle.location;
+      if (!acc[locationName]) {
+        acc[locationName] = {
+          vehicles: [],
+          image:
+            locationImages[locationName] ||
+            "https://images.pexels.com/photos/2393835/pexels-photo-2393835.jpeg",
+        };
+      }
+      acc[locationName].vehicles.push(vehicle);
+      return acc;
+    }, {} as Record<string, { vehicles: (MotorcycleType | CarType)[]; image: string }>);
+  }, [allVehicles]);
+
+  // Навигация на страницу транспортного средства
   const handleVehicleClick = (vehicle: MotorcycleType | CarType) => {
     navigate(`/vehicles/${vehicle.vehicleType}/${vehicle.id}`);
   };
@@ -65,11 +74,16 @@ const LocationPage: React.FC = () => {
                 key={vehicle.id}
                 className="vehicle-card"
                 onClick={() => handleVehicleClick(vehicle)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleVehicleClick(vehicle);
+                }}
               >
                 <div className="vehicle-image-wrapper">
                   <img
                     src={vehicle.image}
-                    alt={vehicle.name}
+                    alt={vehicle.name || `${vehicle.brand} ${vehicle.model}`}
                     className="vehicle-image"
                   />
                   <div className="vehicle-price">
@@ -138,7 +152,7 @@ const LocationPage: React.FC = () => {
                   </div>
 
                   <div className="vehicle-specs">
-                    {vehicle.specifications.slice(0, 3).map((spec, index) => (
+                    {vehicle.specifications?.slice(0, 3).map((spec, index) => (
                       <div key={index} className="spec-item">
                         {spec.value}
                       </div>
@@ -153,15 +167,17 @@ const LocationPage: React.FC = () => {
                     >
                       {vehicle.available ? "Доступно" : "Недоступно"}
                     </span>
-                    <button
-                      className="details-button"
+                    <Link
+                      href={`/${
+                        vehicle.vehicleType === "motorcycle" ? "moto" : "cars"
+                      }/${vehicle.id}`}
+                      className="view-details-button"
                       onClick={(e) => {
-                        e.stopPropagation();
-                        handleVehicleClick(vehicle);
+                        e.stopPropagation(); // предотвращаем родительский onClick
                       }}
                     >
-                      Подробнее
-                    </button>
+                      Подробнее <ArrowRight size={16} />
+                    </Link>
                   </div>
                 </div>
               </div>
