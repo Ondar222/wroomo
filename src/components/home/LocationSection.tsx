@@ -73,13 +73,13 @@ const LocationCard: React.FC<LocationProps> = ({
 
         <div className="location-card-buttons">
           <Link
-            href={`/bikes/${slug}`}
+            href={`/moto`}
             className="location-card-button location-card-button-primary"
           >
             Посмотреть мото
           </Link>
           <Link
-            href={`/cars/${slug}`}
+            href={`/cars`}
             className="location-card-button location-card-button-secondary"
           >
             Посмотреть авто

@@ -1,21 +1,239 @@
-/* Можно добавить в ваш основной CSS файл */
+/* Общие контейнеры */
 .container {
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  margin-top: 40px;
 }
 
-.transition-shadow {
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.location-section {
+  margin-bottom: 64px;
+  background: none;
+}
+
+/* Баннер локации */
+.location-banner {
+  position: relative;
+  height: 256px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.location-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.location-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.location-title {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.location-count {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background-color: white;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Сетка карточек транспорта */
+.vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Карточка транспорта */
+.vehicle-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
   transition: box-shadow 0.3s ease;
+  border: 1px solid #f0f0f0;
 }
 
-.hover\:shadow-lg:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+.vehicle-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.transition-transform {
+/* Изображение в карточке */
+.vehicle-image-wrapper {
+  position: relative;
+  height: 192px;
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.hover\:scale-105:hover {
+.vehicle-card:hover .vehicle-image {
   transform: scale(1.05);
+}
+
+.vehicle-price {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Информация о транспорте */
+.vehicle-info {
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vehicle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.vehicle-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  max-width: 70%;
+}
+
+.vehicle-rating {
+  display: flex;
+  align-items: center;
+  background-color: #ebf4ff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+.star-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.rating-text {
+  white-space: nowrap;
+}
+
+/* Тип транспорта */
+.vehicle-type {
+  display: flex;
+  align-items: center;
+  color: #555;
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+}
+
+.vehicle-type .icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  stroke-width: 2;
+}
+
+/* Спецификации */
+.vehicle-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.spec-item {
+  background-color: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+/* Нижняя часть карточки */
+.vehicle-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Статус доступности */
+.availability {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  user-select: none;
+}
+
+.available {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.unavailable {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* Кнопка "Подробнее" */
+.details-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.details-button:hover {
+  background-color: #1d4ed8;
 }

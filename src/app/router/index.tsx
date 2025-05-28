@@ -9,6 +9,7 @@ import MotorcyclesPage from "../../components/pages/moto/MotorcyclesPage";
 import LoginPage from "../../components/pages/LoginPage";
 import RegisterPage from "../../components/pages/register/RegisterPage";
 import RegisterTypePage from "../../components/pages/register/RegisterTypePage";
+import LocationsPage from "../../components/pages/LocationPage";
 
 const Router = () => (
   <Routes>
@@ -29,6 +30,8 @@ const Router = () => (
 
     {/* Общий маршрут для детальной страницы транспортного средства (если нужно) */}
     <Route path="/vehicle/:id" element={<VehicleDetailPage />} />
+
+    <Route path="/locations/:slug?" element={<LocationsPage />} />
 
     {/* Ловим все несуществующие маршруты */}
     <Route path="*" element={<NotFoundPage />} />
