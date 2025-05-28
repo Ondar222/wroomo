@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../../../styles/Dashboard.css";
 
 const DashboardPage: React.FC = () => {
-  const { user, loading, logout } = useAuth(); // Добавили logout
+  const { user, userType, loading, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,10 +15,18 @@ const DashboardPage: React.FC = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/login"); // После выхода - редирект на логин
+    navigate("/login");
   };
 
   if (loading) return <div className="loading">Загрузка...</div>;
+
+  if (!userType)
+    return (
+      <div className="dashboard-container">
+        <h2>Не определён тип пользователя. Пожалуйста, войдите заново.</h2>
+        <button onClick={handleLogout}>Выйти</button>
+      </div>
+    );
 
   return (
     <div className="dashboard-container">
@@ -48,91 +56,60 @@ const DashboardPage: React.FC = () => {
         </nav>
       </header>
 
-      <div className="dashboard-stats">
-        <div className="stats-row">
-          <div className="stat-card">
-            <div className="stat-value">0</div>
-            <div className="stat-label">В аренде</div>
+      {userType === "driver" && (
+        <>
+          <h2>Добро пожаловать, водитель!</h2>
+          <p>Здесь вы можете арендовать авто или мотоцикл.</p>
+          <div className="dashboard-controls">
+            <button className="control-button active">
+              Доступные транспортные средства
+            </button>
+            <button className="control-button">Мои бронирования</button>
+            <button className="control-button">История аренды</button>
           </div>
-          <div className="stat-card">
-            <div className="stat-value">0</div>
-            <div className="stat-label">В аренде</div>
+          {/* Можно добавить список транспорта, фильтры и т.п. */}
+          <div className="dashboard-content">
+            <div className="empty-list">
+              Пока у вас нет активных бронирований.
+            </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-value">0</div>
-            <div className="stat-label">Забронировано</div>
-          </div>
-        </div>
-        <div className="stats-row">
-          <div className="stat-card">
-            <div className="stat-value">0</div>
-            <div className="stat-label">Забронировано</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-value">0</div>
-            <div className="stat-label">Недоступно</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-value">0</div>
-            <div className="stat-label">Недоступно</div>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
 
-      <div className="dashboard-controls">
-        <button className="control-button active">Транспорт</button>
-        <button className="control-button">Календарь</button>
-        <button className="control-button">Уведомления</button>
-      </div>
-
-      <div className="dashboard-filters">
-        <div className="filter-group">
-          <label>Тип транспорта</label>
-          <select>
-            <option>Все</option>
-            {/* Другие варианты */}
-          </select>
-        </div>
-        <div className="filter-group">
-          <label>Марка</label>
-          <select>
-            <option>Все</option>
-            {/* Другие варианты */}
-          </select>
-        </div>
-        <div className="filter-group">
-          <label>Модель</label>
-          <select>
-            <option>Все</option>
-            {/* Другие варианты */}
-          </select>
-        </div>
-      </div>
-
-      <div className="dashboard-content">
-        <div className="empty-list">Список пуст</div>
-      </div>
-
-      <div className="dashboard-metrics">
-        <div className="metric-card">
-          <div className="metric-value">МИН</div>
-          <div className="metric-description">
-            Время вашего ответа. Среднее время подтверждения бронирования.
+      {userType === "owner" && (
+        <>
+          <h2>Добро пожаловать, владелец!</h2>
+          <p>Здесь вы можете управлять своим автопарком и сдавать транспорт.</p>
+          <div className="dashboard-controls">
+            <button className="control-button active">
+              Мои транспортные средства
+            </button>
+            <button className="control-button">Бронирования</button>
+            <button className="control-button">Отзывы</button>
           </div>
-        </div>
-        <div className="metric-card">
-          <div className="metric-value">0%</div>
-          <div className="metric-description">
-            Подтвержденных бронирований. Вы подтверждаете 0 из 0 бронирований.
+          {/* Аналогично — список авто/мото, статистика */}
+          <div className="dashboard-content">
+            <div className="empty-list">Пока вы не добавили транспорт.</div>
           </div>
-        </div>
-        <div className="metric-card">
-          <div className="metric-value">0</div>
-          <div className="metric-description">
-            Ваша оценка. Средняя оценка вашего сервиса по отзывам водителей.
+
+          <div className="dashboard-metrics">
+            <div className="metric-card">
+              <div className="metric-value">0</div>
+              <div className="metric-description">Активных арендаторов</div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-value">0</div>
+              <div className="metric-description">
+                Общее количество бронирований
+              </div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-value">5.0</div>
+              <div className="metric-description">Средняя оценка сервиса</div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };

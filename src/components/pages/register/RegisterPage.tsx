@@ -106,6 +106,7 @@ const RegisterPage: React.FC = () => {
 
   const handleUserTypeSelect = (type: "driver" | "owner") => {
     setUserType(type);
+    localStorage.setItem("userType", type);
     setShowUserTypeModal(false);
   };
 
