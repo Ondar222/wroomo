@@ -36,7 +36,7 @@ export interface CarType extends VehicleType {
   doors: number;
   transmission: 'automatic' | 'manual';
   fuelType: string;
-  category: 'compact' | 'sedan' | 'suv' | 'minivan' | 'luxury';
+  category: 'hatchback' | 'sedan' | 'suv' | 'minivan' | 'pickup' | 'cabriolet' | 'van';
   trunkCapacity: string;
   airConditioned: boolean;
 }
