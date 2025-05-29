@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motorcycles, cars } from "../../data/vehicles";
-import { VehicleType } from "../../types/vehicle";
+
 import "../../styles/VehicleDetails.css";
 
 const VehicleDetailPage = () => {

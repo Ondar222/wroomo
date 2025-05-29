@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MotorcycleType } from "../../../types/vehicle";
 import { motorcycles } from "../../../data/vehicles";
 import Link from "next/link";
@@ -60,9 +60,19 @@ const MotorcycleCard: React.FC<{ motorcycle: MotorcycleType }> = ({
     </div>
   );
 };
-//sdsdsd
 
 const MotorcyclesPage: React.FC = () => {
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedType, setSelectedType] = useState("");
+
+  const filteredMotorcycles = motorcycles.filter((motorcycle) => {
+    const matchesLocation = selectedLocation
+      ? motorcycle.location === selectedLocation
+      : true;
+    const matchesType = selectedType ? motorcycle.type === selectedType : true;
+    return matchesLocation && matchesType;
+  });
+
   return (
     <div className="motorcycles-page">
       <div className="page-header">
@@ -76,7 +86,12 @@ const MotorcyclesPage: React.FC = () => {
       <div className="filters-container">
         <div className="filter-group">
           <label htmlFor="location">Местоположение:</label>
-          <select id="location" className="filter-select">
+          <select
+            id="location"
+            className="filter-select"
+            value={selectedLocation}
+            onChange={(e) => setSelectedLocation(e.target.value)}
+          >
             <option value="">Все</option>
             <option value="Остров Самуи">Остров Самуи</option>
             <option value="Пхукет">Пхукет</option>
@@ -87,7 +102,12 @@ const MotorcyclesPage: React.FC = () => {
 
         <div className="filter-group">
           <label htmlFor="type">Тип:</label>
-          <select id="type" className="filter-select">
+          <select
+            id="type"
+            className="filter-select"
+            value={selectedType}
+            onChange={(e) => setSelectedType(e.target.value)}
+          >
             <option value="">Все</option>
             <option value="Скутер">Скутеры</option>
             <option value="Спорт">Спортивные</option>
@@ -96,9 +116,13 @@ const MotorcyclesPage: React.FC = () => {
       </div>
 
       <div className="motorcycles-grid">
-        {motorcycles.map((motorcycle) => (
-          <MotorcycleCard key={motorcycle.id} motorcycle={motorcycle} />
-        ))}
+        {filteredMotorcycles.length > 0 ? (
+          filteredMotorcycles.map((motorcycle) => (
+            <MotorcycleCard key={motorcycle.id} motorcycle={motorcycle} />
+          ))
+        ) : (
+          <p className="no-results">Нет мотоциклов по заданным фильтрам.</p>
+        )}
       </div>
     </div>
   );
