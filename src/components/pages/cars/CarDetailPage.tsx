@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { cars } from "../../../data/vehicles";
+import { CarType } from "../../../types/vehicle";
 import {
   Star,
   ArrowLeft,
@@ -10,23 +10,34 @@ import {
   DoorOpen,
 } from "lucide-react";
 import { Link } from "../../common/Link";
+import { useTranslation } from "react-i18next";
 import "../../../styles/vehicles.css";
 
 const CarDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Хук из react-router-dom
-  const navigate = useNavigate(); // Для навигации вместо router.push
-  const car = cars.find((c) => c.id === id);
+  const { t } = useTranslation();
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const [car, setCar] = useState<CarType | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!car) {
-    return <div>Автомобиль не найден</div>;
-  }
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/cars/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCar(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [id]);
+
+  if (loading) return <div>Загрузка...</div>;
+  if (!car) return <div>{t("car.not_found", "Автомобиль не найден")}</div>;
 
   return (
     <div className="car-detail-page">
       <Link href="/cars" className="back-button">
-        <ArrowLeft size={20} /> Назад к списку
+        <ArrowLeft size={20} /> {t("car.back_to_list", "Назад к списку")}
       </Link>
-      <div className="back-button-container"></div>
 
       <div className="car-gallery">
         <div className="main-image">
@@ -48,7 +59,9 @@ const CarDetailPage: React.FC = () => {
             <div className="rating">
               <Star size={18} className="star-icon" />
               <span>{car.rating}</span>
-              <span>({car.reviewCount} отзывов)</span>
+              <span>
+                ({car.reviewCount} {t("car.reviews", "отзывов")})
+              </span>
             </div>
             <div className="location">
               <MapPin size={18} />
@@ -59,7 +72,7 @@ const CarDetailPage: React.FC = () => {
 
         <div className="price-section">
           <div className="daily-price">
-            {car.price} {car.currency}/день
+            {car.price} {car.currency}/{t("car.per_day", "день")}
           </div>
           <button
             className="rent-button"
@@ -71,46 +84,48 @@ const CarDetailPage: React.FC = () => {
               );
             }}
           >
-            Арендовать сейчас
+            {t("car.rent_now", "Арендовать сейчас")}
           </button>
         </div>
 
         <div className="description-section">
-          <h2>Описание</h2>
+          <h2>{t("car.description", "Описание")}</h2>
           <p>{car.description}</p>
         </div>
 
         <div className="specs-section">
-          <h2>Характеристики</h2>
+          <h2>{t("car.specs", "Характеристики")}</h2>
           <div className="specs-grid">
             <div className="spec-item">
               <div>
-                <div className="spec-name">Трансмиссия</div>
+                <div className="spec-name">
+                  {t("car.transmission", "Трансмиссия")}
+                </div>
                 <div className="spec-value">
                   {car.transmission === "automatic"
-                    ? "Автоматическая"
-                    : "Механическая"}
+                    ? t("car.transmission_auto", "Автоматическая")
+                    : t("car.transmission_manual", "Механическая")}
                 </div>
               </div>
             </div>
             <div className="spec-item">
               <Users size={20} />
               <div>
-                <div className="spec-name">Мест</div>
+                <div className="spec-name">{t("car.seats", "Мест")}</div>
                 <div className="spec-value">{car.seats}</div>
               </div>
             </div>
             <div className="spec-item">
               <DoorOpen size={20} />
               <div>
-                <div className="spec-name">Дверей</div>
+                <div className="spec-name">{t("car.doors", "Дверей")}</div>
                 <div className="spec-value">{car.doors}</div>
               </div>
             </div>
             <div className="spec-item">
               <Calendar size={20} />
               <div>
-                <div className="spec-name">Год</div>
+                <div className="spec-name">{t("car.year", "Год")}</div>
                 <div className="spec-value">{car.year}</div>
               </div>
             </div>
@@ -118,11 +133,11 @@ const CarDetailPage: React.FC = () => {
         </div>
 
         <div className="features-section">
-          <h2>Особенности</h2>
+          <h2>{t("car.features", "Особенности")}</h2>
           <ul className="features-list">
             {car.features.map((feature, index) => (
               <li key={index} className="feature-item">
-                {feature}
+                {t(`car.features.${feature}`, feature)}
               </li>
             ))}
           </ul>

@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CarType } from "../../../types/vehicle";
-import { cars } from "../../../data/vehicles";
 import { Link } from "../../common/Link";
 import { ArrowRight, Star } from "lucide-react";
 import "../../../styles/vehicles.css";
@@ -56,6 +55,26 @@ const CarCard: React.FC<{ car: CarType }> = ({ car }) => {
 };
 
 const CarsPage: React.FC = () => {
+  const [cars, setCars] = useState<CarType[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/cars")
+      .then((res) => res.json())
+      .then((data) => {
+        setCars(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Ошибка загрузки машин");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <div>Загрузка автомобилей...</div>;
+  if (error) return <div>{error}</div>;
+
   return (
     <div className="cars-page">
       <div className="page-header">
