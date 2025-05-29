@@ -12,6 +12,7 @@ import RegisterTypePage from "../../components/pages/register/RegisterTypePage";
 import LocationsPage from "../../components/pages/LocationPage";
 import DashboardPage from "../../components/pages/admin/DashboardPage";
 import PaymentPage from "../../components/pages/PaymentPage";
+import SuccessPage from "../../components/pages/SuccessPage";
 
 const Router = () => (
   <Routes>
@@ -38,6 +39,7 @@ const Router = () => (
 
     <Route path="/locations/:slug?" element={<LocationsPage />} />
     <Route path="/pay" element={<PaymentPage />} />
+    <Route path="/payment/success" element={<SuccessPage />} />
 
     {/* Ловим все несуществующие маршруты */}
     <Route path="*" element={<NotFoundPage />} />

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { motorcycles } from "../../../data/vehicles";
 import { Star, ArrowLeft, Calendar, MapPin, Users } from "lucide-react";
 import "../../../styles/vehicles.css";
