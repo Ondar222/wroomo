@@ -143,12 +143,12 @@
 }
 
 .location-card-button-primary {
-  background-color: #2563eb;
+  background-color: #ec307f;
   color: white;
 }
 
 .location-card-button-primary:hover {
-  background-color: #1d4ed8;
+  background-color: #000000;
 }
 
 .location-card-button-secondary {

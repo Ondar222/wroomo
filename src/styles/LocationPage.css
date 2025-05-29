@@ -222,7 +222,7 @@
 
 /* Кнопка "Подробнее" */
 .details-button {
-  background-color: #2563eb;
+  background-color: #ec307f;
   color: white;
   padding: 6px 12px;
   border-radius: 6px;
@@ -234,7 +234,7 @@
 }
 
 .details-button:hover {
-  background-color: #1d4ed8;
+  background-color: #000000;
 }
 
 @media (max-width: 767px) {

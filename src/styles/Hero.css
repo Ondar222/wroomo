@@ -13,8 +13,8 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  background-image: url("https://images.pexels.com/photos/2526128/pexels-photo-2526128.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
-  opacity: 0.3;
+  background-image: url("https://i.pinimg.com/736x/52/f9/fb/52f9fb8bbd6912e16f653fb31e8add91.jpg");
+  opacity: 0.6;
 }
 
 .hero-content {
@@ -114,8 +114,8 @@
 }
 
 .search-input-container input:focus {
-  border-color: #4299e1;
-  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
+  border-color: #ec307f;
+  /* box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5); */
 }
 
 .search-icon {
@@ -137,8 +137,8 @@
 }
 
 .search-form-group input[type="date"]:focus {
-  border-color: #4299e1;
-  box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
+  border-color: #ec307f;
+  /* box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5); */
 }
 
 .search-button-container {
@@ -148,7 +148,7 @@
 .search-button {
   width: 100%;
   padding: 0.75rem 1.5rem;
-  background-color: #2b6cb0;
+  background-color: #ec307f;
   color: white;
   font-weight: 500;
   border-radius: 0.375rem;
@@ -203,7 +203,7 @@
 
 .vehicle-type-button.active {
   background-color: #ebf8ff;
-  color: #2b6cb0;
+  color: #ec307f;
 }
 
 .vehicle-icon {
