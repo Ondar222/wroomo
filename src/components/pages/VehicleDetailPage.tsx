@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { motorcycles, cars } from "../../data/vehicles";
 import { VehicleType } from "../../types/vehicle";
 import "../../styles/VehicleDetails.css";
@@ -7,6 +8,7 @@ const VehicleDetailPage = () => {
   const [vehicleId] = useState(window.location.pathname.split("/").pop());
   const allVehicles = [...motorcycles, ...cars];
   const vehicle = allVehicles.find((v) => v.id === vehicleId);
+  const navigate = useNavigate(); // Для навигации вместо router.push
 
   if (!vehicle) {
     return (
@@ -160,7 +162,18 @@ const VehicleDetailPage = () => {
               </ul>
             </div>
 
-            <button className="rent-button">Арендовать</button>
+            <button
+              className="rent-button"
+              onClick={() => {
+                navigate(
+                  `/pay?orderId=order-${
+                    vehicle.id
+                  }-${Date.now()}&userId=user-123&amount=${vehicle.price}`
+                );
+              }}
+            >
+              Арендовать сейчас
+            </button>
           </div>
         </div>
       </div>

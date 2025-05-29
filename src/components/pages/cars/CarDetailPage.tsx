@@ -61,7 +61,18 @@ const CarDetailPage: React.FC = () => {
           <div className="daily-price">
             {car.price} {car.currency}/день
           </div>
-          <button className="rent-button">Арендовать сейчас</button>
+          <button
+            className="rent-button"
+            onClick={() => {
+              navigate(
+                `/pay?orderId=order-${
+                  car.id
+                }-${Date.now()}&userId=user-123&amount=${car.price}`
+              );
+            }}
+          >
+            Арендовать сейчас
+          </button>
         </div>
 
         <div className="description-section">

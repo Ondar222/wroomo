@@ -11,6 +11,7 @@ import RegisterPage from "../../components/pages/register/RegisterPage";
 import RegisterTypePage from "../../components/pages/register/RegisterTypePage";
 import LocationsPage from "../../components/pages/LocationPage";
 import DashboardPage from "../../components/pages/admin/DashboardPage";
+import PaymentPage from "../../components/pages/PaymentPage";
 
 const Router = () => (
   <Routes>
@@ -36,6 +37,7 @@ const Router = () => (
     <Route path="/motorcycles/:id" element={<MotorcycleDetailPage />} />
 
     <Route path="/locations/:slug?" element={<LocationsPage />} />
+    <Route path="/pay" element={<PaymentPage />} />
 
     {/* Ловим все несуществующие маршруты */}
     <Route path="*" element={<NotFoundPage />} />
