@@ -1,10 +1,10 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
-import { Menu, X, ChevronDown, Globe, User, LogOut } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/Header.css";
 import { useAuth } from "../pages/context/AuthContext";
+import { toast } from "react-toastify";
 
-// Переводы
 const translations = {
   en: {
     home: "Home",
@@ -47,7 +47,6 @@ const translations = {
   },
 };
 
-// Контекст языка
 const LanguageContext = createContext<{
   language: keyof typeof translations;
   setLanguage: (lang: keyof typeof translations) => void;
@@ -56,8 +55,10 @@ const LanguageContext = createContext<{
   setLanguage: () => {},
 });
 
-// Навигационные ссылки
-const NavLinks: React.FC<{ showDashboard?: boolean }> = ({ showDashboard }) => {
+const NavLinks: React.FC<{ showDashboard?: boolean; isMobile?: boolean }> = ({
+  showDashboard,
+  isMobile,
+}) => {
   const { language } = useContext(LanguageContext);
   const t = translations[language];
 
@@ -74,9 +75,14 @@ const NavLinks: React.FC<{ showDashboard?: boolean }> = ({ showDashboard }) => {
   }
 
   return (
-    <nav className="desktop-nav">
+    <nav className={isMobile ? "mobile-nav" : "desktop-nav"}>
       {links.map((link) => (
-        <Link key={link.href} to={link.href} className="nav-link">
+        <Link
+          key={link.href}
+          to={link.href}
+          className={isMobile ? "mobile-nav-link" : "nav-link"}
+          onClick={() => isMobile && window.scrollTo(0, 0)}
+        >
           {link.text}
         </Link>
       ))}
@@ -89,8 +95,7 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const { language, setLanguage } = useContext(LanguageContext);
-  const { user, logout } = useAuth(); // ← ОБЯЗАТЕЛЬНО без опечаток
-
+  const { user, logout } = useAuth();
   const t = translations[language];
   const navigate = useNavigate();
 
@@ -102,8 +107,29 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleLanguageMenu = () => setLanguageMenuOpen(!languageMenuOpen);
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("mobile-menu-open");
+    } else {
+      document.body.classList.remove("mobile-menu-open");
+    }
+  }, [isMenuOpen]);
+
+  // Добавляем эффект для запрета скролла body, когда меню открыто
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    // очищаем на размонтировании компонента, чтобы сбросить overflow
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const toggleLanguageMenu = () => setLanguageMenuOpen((prev) => !prev);
 
   const changeLanguage = (lang: keyof typeof translations) => {
     setLanguage(lang);
@@ -121,8 +147,8 @@ const Header: React.FC = () => {
   };
 
   const handleLogout = () => {
-    logout(); // из useAuth
-    toast.success("Вы вышли из аккаунта");
+    logout();
+    toast.success(t.logoutSuccess);
     navigate("/");
     setIsMenuOpen(false);
   };
@@ -178,9 +204,11 @@ const Header: React.FC = () => {
           </button>
         </div>
 
+        {/* Мобильное меню с анимацией с правой стороны */}
         {isMenuOpen && (
-          <div className="mobile-menu">
-            <NavLinks showDashboard={!!user} />
+          <div className="mobile-menu mobile-menu-open">
+            <NavLinks showDashboard={!!user} isMobile />
+
             <div className="mobile-language-section">
               <button className="mobile-language-button">
                 <Globe size={18} />
@@ -198,10 +226,18 @@ const Header: React.FC = () => {
             <div className="mobile-auth-section">
               {!user ? (
                 <>
-                  <Link to="/login" className="mobile-nav-link">
+                  <Link
+                    to="/login"
+                    className="mobile-nav-link"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     {t.login}
                   </Link>
-                  <Link to="/register" className="mobile-register-button">
+                  <Link
+                    to="/register"
+                    className="mobile-register-button"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     {t.register}
                   </Link>
                 </>
