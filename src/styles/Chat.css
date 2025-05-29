@@ -1,0 +1,27 @@
+.chat-page {
+  padding: 2rem;
+  text-align: center;
+}
+
+.chat-roles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.chat-role-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 250px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+}
+
+.chat-role-card:hover {
+  background-color: #eef6ff;
+  transform: translateY(-4px);
+}

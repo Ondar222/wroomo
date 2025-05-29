@@ -16,6 +16,7 @@ const translations = {
     register: "Register",
     language: "Language",
     dashboard: "Dashboard",
+    chat: "Chat",
     logout: "Logout",
     logoutSuccess: "You have been logged out.",
   },
@@ -29,6 +30,7 @@ const translations = {
     register: "Регистрация",
     language: "Язык",
     dashboard: "Панель управления",
+    chat: "Чат",
     logout: "Выход",
     logoutSuccess: "Вы вышли из системы.",
   },
@@ -42,6 +44,7 @@ const translations = {
     register: "ลงทะเบียน",
     language: "ภาษา",
     dashboard: "แดชบอร์ด",
+    chat: "ชาท",
     logout: "ออกจากระบบ",
     logoutSuccess: "คุณได้ออกจากระบบแล้ว",
   },
@@ -69,6 +72,7 @@ const NavLinks: React.FC<{
     { href: "/cars", text: t.cars },
     { href: "/locations", text: t.locations },
     { href: "/about", text: t.about },
+    { href: "/chat", text: t.chat }, // ← ДОБАВЛЕНО
   ];
 
   if (showDashboard) {
