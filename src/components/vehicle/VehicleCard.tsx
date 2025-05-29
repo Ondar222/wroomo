@@ -1,84 +1,109 @@
 import React from "react";
-import { Star, MapPin, Users, BarChart3 } from "lucide-react";
+import { CarType, MotorcycleType } from "../../types/vehicle";
+import "../../styles/VehicleCard.css";
 import { Link } from "../common/Link";
-import { VehicleType } from "../../types/vehicle";
-import "../../styles/VehicleCard.css"; // We'll create this CSS file
 
 interface VehicleCardProps {
-  vehicle: VehicleType;
+  vehicle: CarType | MotorcycleType;
 }
 
 const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle }) => {
-  const {
-    id,
-    name,
-    type,
-    image,
-    price,
-    currency,
-    location,
-    rating,
-    reviewCount,
-    year,
-    specifications,
-  } = vehicle;
+  const isMotorcycle = vehicle.vehicleType === "motorcycle";
 
   return (
     <div className="vehicle-card">
-      <div className="vehicle-image-container">
-        <Link href={`/vehicle/${id}`}>
-          <img src={image} alt={name} className="vehicle-image" />
-        </Link>
-        <div className="vehicle-type-badge">
-          <span className="type-label">{type}</span>
-        </div>
+      <div className="vehicle-card-image-container">
+        <img
+          src={vehicle.image}
+          alt={`${vehicle.brand} ${vehicle.model}`}
+          className="vehicle-card-image"
+          loading="lazy"
+        />
+        {!vehicle.available && <div className="vehicle-card-badge">Занят</div>}
       </div>
 
-      <div className="vehicle-details">
-        <div className="vehicle-header">
-          <Link href={`/vehicle/${id}`} className="vehicle-name-link">
-            <h3 className="vehicle-name">{name}</h3>
-          </Link>
-          <div className="vehicle-rating">
-            <Star size={16} className="star-icon" />
-            <span className="rating-value">{rating}</span>
-            <span className="review-count">({reviewCount})</span>
+      <div className="vehicle-card-content">
+        <div className="vehicle-card-header">
+          <h3 className="vehicle-card-title">
+            {vehicle.brand} {vehicle.model}
+          </h3>
+          <div className="vehicle-card-rating">
+            <span className="vehicle-card-rating-star">★</span>
+            <span>{vehicle.rating.toFixed(1)}</span>
+            <span className="vehicle-card-reviews">
+              ({vehicle.reviewCount})
+            </span>
           </div>
         </div>
 
-        <div className="vehicle-meta">
-          <MapPin size={14} className="location-icon" />
-          <span className="location-text">{location}</span>
-          <span className="separator">•</span>
-          <span className="year-text">{year}</span>
-        </div>
+        <div className="vehicle-card-specs">
+          <div className="vehicle-card-spec">
+            <span className="vehicle-card-spec-label">Год:</span>
+            <span>{vehicle.year}</span>
+          </div>
 
-        <div className="vehicle-specs-section">
-          <div className="specs-container">
-            {specifications.map((spec, index) => (
-              <div key={index} className="spec-badge">
-                {spec.icon === "users" && (
-                  <Users size={12} className="spec-icon" />
-                )}
-                {spec.icon === "engine" && (
-                  <BarChart3 size={12} className="spec-icon" />
-                )}
-                <span className="spec-value">{spec.value}</span>
+          {isMotorcycle ? (
+            <>
+              <div className="vehicle-card-spec">
+                <span className="vehicle-card-spec-label">Объем:</span>
+                <span>{(vehicle as MotorcycleType).engineSize}cc</span>
               </div>
-            ))}
-          </div>
+              <div className="vehicle-card-spec">
+                <span className="vehicle-card-spec-label">Тип:</span>
+                <span className="vehicle-card-spec-value">
+                  {(vehicle as MotorcycleType).category}
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="vehicle-card-spec">
+                <span className="vehicle-card-spec-label">Мест:</span>
+                <span>{(vehicle as CarType).seats}</span>
+              </div>
+              <div className="vehicle-card-spec">
+                <span className="vehicle-card-spec-label">Тип:</span>
+                <span className="vehicle-card-spec-value">
+                  {(vehicle as CarType).category}
+                </span>
+              </div>
+            </>
+          )}
+        </div>
 
-          <div className="price-and-button">
-            <div className="price-container">
-              <span className="price-value">
-                {currency}
-                {price}
-              </span>
-              <span className="price-unit">/день</span>
+        <div className="vehicle-card-footer">
+          <div className="vehicle-card-price">
+            {vehicle.price} {vehicle.currency}/день
+          </div>
+          <div className="vehicle-card-location">
+            <div className="vehicle-card-location-text">
+              <svg
+                className="vehicle-card-location-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+              {vehicle.location}
             </div>
-            <Link href={`/vehicle/${id}`} className="details-button">
-              Подробнее
-            </Link>
+
+            <div className="price-and-button">
+              <Link href={`/vehicle/${vehicle.id}`} className="details-button">
+                Подробнее
+              </Link>
+            </div>
           </div>
         </div>
       </div>

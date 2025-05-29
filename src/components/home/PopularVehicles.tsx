@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import VehicleCard from "../vehicle/VehicleCard";
-import { VehicleType } from "../../types/vehicle";
+import { CarType, MotorcycleType } from "../../types/vehicle";
 import { motorcycles, cars } from "../../data/vehicles";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import VehicleFilter from "../common/VehicleFilter";
 import "../../styles/PopularVehicles.css";
 
 interface PopularVehiclesProps {
   title: string;
   subtitle: string;
-  vehicles: VehicleType[];
+  vehicles: (CarType | MotorcycleType)[];
 }
 
 const VehicleCategory: React.FC<PopularVehiclesProps> = ({
@@ -45,18 +46,104 @@ const VehicleCategory: React.FC<PopularVehiclesProps> = ({
 };
 
 const PopularVehicles: React.FC = () => {
+  const [filteredMotorcycles, setFilteredMotorcycles] =
+    useState<MotorcycleType[]>(motorcycles);
+  const [filteredCars, setFilteredCars] = useState<CarType[]>(cars);
+
+  const handleFilterChange = (filter: {
+    vehicleType: "all" | "car" | "motorcycle";
+    category: string;
+    year: string;
+    transmission: string;
+    fuelType: string;
+  }) => {
+    // Фильтрация мотоциклов
+    const newFilteredMotos = motorcycles.filter((moto) => {
+      const matchesType =
+        filter.vehicleType === "all" || filter.vehicleType === "motorcycle";
+
+      const categoryParts = filter.category.split("-");
+      const matchesCategory =
+        filter.category === "all" ||
+        (categoryParts.length === 1 && filter.category === moto.category) ||
+        (categoryParts.length === 2 &&
+          categoryParts[0] === "motorcycle" &&
+          categoryParts[1] === moto.category);
+
+      const matchesYear =
+        filter.year === "all" || moto.year.toString() === filter.year;
+
+      const matchesTransmission =
+        filter.transmission === "all" ||
+        moto.transmission === filter.transmission;
+
+      const matchesFuelType =
+        filter.fuelType === "all" || moto.fuelType === filter.fuelType;
+
+      return (
+        matchesType &&
+        matchesCategory &&
+        matchesYear &&
+        matchesTransmission &&
+        matchesFuelType
+      );
+    });
+
+    // Фильтрация автомобилей
+    const newFilteredCars = cars.filter((car) => {
+      const matchesType =
+        filter.vehicleType === "all" || filter.vehicleType === "car";
+
+      const categoryParts = filter.category.split("-");
+      const matchesCategory =
+        filter.category === "all" ||
+        (categoryParts.length === 1 && filter.category === car.category) ||
+        (categoryParts.length === 2 &&
+          categoryParts[0] === "car" &&
+          categoryParts[1] === car.category);
+
+      const matchesYear =
+        filter.year === "all" || car.year.toString() === filter.year;
+
+      const matchesTransmission =
+        filter.transmission === "all" ||
+        car.transmission === filter.transmission;
+
+      const matchesFuelType =
+        filter.fuelType === "all" || car.fuelType === filter.fuelType;
+
+      return (
+        matchesType &&
+        matchesCategory &&
+        matchesYear &&
+        matchesTransmission &&
+        matchesFuelType
+      );
+    });
+
+    setFilteredMotorcycles(newFilteredMotos);
+    setFilteredCars(newFilteredCars);
+  };
+
   return (
     <div className="popular-vehicles">
-      <VehicleCategory
-        title="Рекомендуемые мотоциклы"
-        subtitle="Ознакомьтесь с нашими самыми популярными мотоциклами в Таиланде"
-        vehicles={motorcycles}
-      />
-      <VehicleCategory
-        title="Рекомендуемые автомобили"
-        subtitle="Top-rated cars with exceptional reviews"
-        vehicles={cars}
-      />
+      <VehicleFilter onFilterChange={handleFilterChange} />
+
+      {filteredMotorcycles.length > 0 && (
+        <VehicleCategory
+          title="Рекомендуемые мотоциклы"
+          subtitle="Ознакомьтесь с нашими самыми популярными мотоциклами в Таиланде"
+          vehicles={filteredMotorcycles}
+        />
+      )}
+
+      {filteredCars.length > 0 && (
+        <VehicleCategory
+          title="Рекомендуемые автомобили"
+          subtitle="Top-rated cars with exceptional reviews"
+          vehicles={filteredCars}
+        />
+      )}
     </div>
   );
 };

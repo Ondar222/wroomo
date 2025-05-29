@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
       <div className="footer-container">
         <div className="footer-grid">
           <div className="footer-column">
-            <h3 className="footer-brand">Woomo</h3>
+            <h3 className="footer-brand">RentBases</h3>
             <p className="footer-description">
               Найдите идеальное транспортное средство для своего путешествия.
               Арендуйте его у надежных местных поставщиков и насладитесь
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <div className="copyright">
-              &copy; {new Date().getFullYear()} Woomo
+              &copy; {new Date().getFullYear()} RentBase
             </div>
             <div className="legal-links">
               <Link href="/terms" className="footer-link">

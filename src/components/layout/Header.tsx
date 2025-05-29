@@ -132,7 +132,7 @@ const Header: React.FC = () => {
       <div className="header-container">
         <div className="header-content">
           <Link to="/" className="header-logo">
-            <span className="logo-text">Woomo</span>
+            <span className="logo-text">RentBase</span>
           </Link>
 
           <NavLinks showDashboard={!!user} />
