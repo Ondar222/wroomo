@@ -1,45 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { motorcycles } from "../../../data/vehicles";
 import { Star, ArrowLeft, Calendar, MapPin, Users } from "lucide-react";
 import "../../../styles/vehicles.css";
 
 const MotorcycleDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [motorcycle, setMotorcycle] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const motorcycle = motorcycles.find((m) => m.id === id);
 
-  useEffect(() => {
-    async function fetchMotorcycle() {
-      try {
-        const response = await axios.get(`/api/vehicles/${id}`);
-        setMotorcycle(response.data);
-      } catch (err) {
-        console.error("Ошибка загрузки мотоцикла:", err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchMotorcycle();
-  }, [id]);
-
-  if (loading) return <div>Загрузка...</div>;
-  if (!motorcycle) return <div>Мотоцикл не найден</div>;
+  if (!motorcycle) {
+    return <div>Мотоцикл не найден</div>;
+  }
 
   return (
     <div className="motorcycle-detail-page">
       <button onClick={() => navigate(-1)} className="back-button">
         <ArrowLeft size={20} /> Назад к списку
       </button>
+      <div className="back-button-container"></div>
 
       <div className="motorcycle-gallery">
         <div className="main-image">
           <img src={motorcycle.image} alt={motorcycle.name} />
         </div>
         <div className="thumbnail-grid">
-          {motorcycle.images.map((img: string, index: number) => (
+          {motorcycle.images.map((img, index) => (
             <div key={index} className="thumbnail">
               <img src={img} alt={`${motorcycle.name} ${index + 1}`} />
             </div>
@@ -64,16 +50,18 @@ const MotorcycleDetailPage: React.FC = () => {
         </div>
 
         <div className="price-section">
-          <div className="daily-price">{motorcycle.price} $/день</div>
+          <div className="daily-price">
+            {motorcycle.price} {motorcycle.currency}/день
+          </div>
           <button
             className="rent-button"
-            onClick={() =>
+            onClick={() => {
               navigate(
                 `/pay?orderId=order-${
                   motorcycle.id
                 }-${Date.now()}&userId=user-123&amount=${motorcycle.price}`
-              )
-            }
+              );
+            }}
           >
             Арендовать сейчас
           </button>
@@ -88,6 +76,7 @@ const MotorcycleDetailPage: React.FC = () => {
           <h2>Характеристики</h2>
           <div className="specs-grid">
             <div className="spec-item">
+              {/* <Gear size={20} /> */}
               <div>
                 <div className="spec-name">Трансмиссия</div>
                 <div className="spec-value">
@@ -117,13 +106,11 @@ const MotorcycleDetailPage: React.FC = () => {
         <div className="features-section">
           <h2>Особенности</h2>
           <ul className="features-list">
-            {(motorcycle.features || []).map(
-              (feature: string, index: number) => (
-                <li key={index} className="feature-item">
-                  {feature}
-                </li>
-              )
-            )}
+            {motorcycle.features.map((feature, index) => (
+              <li key={index} className="feature-item">
+                {feature}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "../../../styles/Owner.css";
+
 const OwnerDashboard: React.FC = () => {
   return (
     <>
@@ -46,12 +45,6 @@ const OwnerDashboard: React.FC = () => {
             <option>Все</option>
           </select>
         </div>
-      </div>
-
-      <div>
-        <Link to="/dashboard/add-vehicle" className="add-vehicle-button">
-          + Добавить транспорт
-        </Link>
       </div>
 
       <div className="dashboard-content">

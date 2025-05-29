@@ -13,8 +13,6 @@ import LocationsPage from "../../components/pages/LocationPage";
 import DashboardPage from "../../components/pages/admin/DashboardPage";
 import PaymentPage from "../../components/pages/PaymentPage";
 import SuccessPage from "../../components/pages/SuccessPage";
-import VehicleCreationPage from "../../components/pages/VehicleCreationPage";
-import OwnerDashboard from "../../components/pages/admin/OwnerDashboard";
 
 const Router = () => (
   <Routes>
@@ -26,8 +24,6 @@ const Router = () => (
     <Route path="/register" element={<RegisterPage />} />
     <Route path="/register/type" element={<RegisterTypePage />} />
     <Route path="/dashboard" element={<DashboardPage />} />
-    <Route path="/dashboard/add-vehicle" element={<VehicleCreationPage />} />
-    <Route path="/owner" element={<OwnerDashboard />} />
 
     {/* Страницы мотоциклов */}
     <Route path="/moto" element={<MotorcyclesPage />} />

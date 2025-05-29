@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/Dashboard.css";
-import OwnerDashboard from "./OwnerDashboard";
-import DriverDashboard from "./DriverDashboard";
 
 const DashboardPage: React.FC = () => {
   const { user, userType, loading, logout } = useAuth();
@@ -62,14 +60,54 @@ const DashboardPage: React.FC = () => {
         <>
           <h2>Добро пожаловать, водитель!</h2>
           <p>Здесь вы можете арендовать авто или мотоцикл.</p>
-          <DriverDashboard />
+          <div className="dashboard-controls">
+            <button className="control-button active">
+              Доступные транспортные средства
+            </button>
+            <button className="control-button">Мои бронирования</button>
+            <button className="control-button">История аренды</button>
+          </div>
+          {/* Можно добавить список транспорта, фильтры и т.п. */}
+          <div className="dashboard-content">
+            <div className="empty-list">
+              Пока у вас нет активных бронирований.
+            </div>
+          </div>
         </>
       )}
 
       {userType === "owner" && (
         <>
           <h2>Добро пожаловать, владелец!</h2>
-          <OwnerDashboard />
+          <p>Здесь вы можете управлять своим автопарком и сдавать транспорт.</p>
+          <div className="dashboard-controls">
+            <button className="control-button active">
+              Мои транспортные средства
+            </button>
+            <button className="control-button">Бронирования</button>
+            <button className="control-button">Отзывы</button>
+          </div>
+          {/* Аналогично — список авто/мото, статистика */}
+          <div className="dashboard-content">
+            <div className="empty-list">Пока вы не добавили транспорт.</div>
+          </div>
+
+          <div className="dashboard-metrics">
+            <div className="metric-card">
+              <div className="metric-value">0</div>
+              <div className="metric-description">Активных арендаторов</div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-value">0</div>
+              <div className="metric-description">
+                Общее количество бронирований
+              </div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-value">5.0</div>
+              <div className="metric-description">Средняя оценка сервиса</div>
+            </div>
+          </div>
         </>
       )}
     </div>
