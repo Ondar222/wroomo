@@ -55,10 +55,11 @@ const LanguageContext = createContext<{
   setLanguage: () => {},
 });
 
-const NavLinks: React.FC<{ showDashboard?: boolean; isMobile?: boolean }> = ({
-  showDashboard,
-  isMobile,
-}) => {
+const NavLinks: React.FC<{
+  showDashboard?: boolean;
+  isMobile?: boolean;
+  onMobileLinkClick?: () => void;
+}> = ({ showDashboard, isMobile, onMobileLinkClick }) => {
   const { language } = useContext(LanguageContext);
   const t = translations[language];
 
@@ -81,7 +82,12 @@ const NavLinks: React.FC<{ showDashboard?: boolean; isMobile?: boolean }> = ({
           key={link.href}
           to={link.href}
           className={isMobile ? "mobile-nav-link" : "nav-link"}
-          onClick={() => isMobile && window.scrollTo(0, 0)}
+          onClick={() => {
+            if (isMobile) {
+              onMobileLinkClick?.();
+              window.scrollTo(0, 0);
+            }
+          }}
         >
           {link.text}
         </Link>
@@ -207,7 +213,11 @@ const Header: React.FC = () => {
         {/* Мобильное меню с анимацией с правой стороны */}
         {isMenuOpen && (
           <div className="mobile-menu mobile-menu-open">
-            <NavLinks showDashboard={!!user} isMobile />
+            <NavLinks
+              showDashboard={!!user}
+              isMobile
+              onMobileLinkClick={() => setIsMenuOpen(false)}
+            />
 
             <div className="mobile-language-section">
               <button className="mobile-language-button">

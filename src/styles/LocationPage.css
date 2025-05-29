@@ -14,7 +14,6 @@
 }
 
 .location-section {
-  margin-bottom: 64px;
   background: none;
 }
 
@@ -236,4 +235,100 @@
 
 .details-button:hover {
   background-color: #1d4ed8;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 24px 12px !important;
+    margin-top: 40px !important;
+  }
+
+  .title {
+    font-size: 24px !important;
+    margin-top: 20px;
+  }
+
+  .location-banner {
+    height: 200px;
+    margin-bottom: 16px;
+  }
+
+  .location-title {
+    font-size: 1.75rem;
+    text-align: center;
+    padding: 0 8px;
+  }
+
+  .location-count {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .vehicles-grid {
+    grid-template-columns: 1fr; /* одна колонка */
+    gap: 16px;
+  }
+
+  .vehicle-card {
+    border-radius: 10px;
+  }
+
+  .vehicle-image-wrapper {
+    height: 160px;
+  }
+
+  .vehicle-price {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+  }
+
+  .vehicle-info {
+    padding: 12px;
+  }
+
+  .vehicle-name {
+    font-size: 1.125rem;
+    max-width: 100%;
+  }
+
+  .vehicle-rating {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+
+  .vehicle-type {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+
+  .vehicle-specs {
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .spec-item {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+
+  .availability {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+
+  .details-button,
+  .view-details-button {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .star-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
 }
