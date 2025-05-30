@@ -155,3 +155,82 @@
 .testimonials-view-all-button:hover {
   background-color: #eff6ff;
 }
+
+/* --- Мобильная адаптивность для testimonials --- */
+@media (max-width: 767px) {
+  .testimonials-section {
+    padding: 2rem 1rem;
+  }
+
+  .testimonials-title {
+    font-size: 1.5rem;
+  }
+
+  .testimonials-subtitle {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .testimonial-card {
+    padding: 1rem;
+  }
+
+  .testimonial-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .testimonial-avatar-container {
+    margin-right: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .testimonial-user-info {
+    flex: none;
+  }
+
+  .testimonial-name {
+    font-size: 1.125rem;
+  }
+
+  .testimonial-location-date {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .testimonial-location {
+    font-size: 0.875rem;
+  }
+
+  .testimonial-date {
+    font-size: 0.75rem;
+  }
+
+  .testimonial-rating {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+
+  .testimonials-footer {
+    margin-top: 2rem;
+  }
+
+  .testimonials-view-all-button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+}
