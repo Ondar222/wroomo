@@ -261,7 +261,7 @@ export const cars: CarType[] = [
     vehicleType: 'car',
     brand: 'Toyota',
     model: 'Yaris',
-    year: 2023,
+
     image: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     images: [
       'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -300,7 +300,7 @@ export const cars: CarType[] = [
     available: true,
     seats: 5,
     doors: 4,
-    transmission: 'automatic',
+    transmission: 'manual',
     fuelType: 'gasoline',
     category: 'hatchback',
     trunkCapacity: 'Small',
@@ -314,7 +314,7 @@ export const cars: CarType[] = [
     vehicleType: 'car',
     brand: 'Honda',
     model: 'CR-V',
-    year: 2022,
+
     image: 'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     images: [
       'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -367,7 +367,7 @@ export const cars: CarType[] = [
     vehicleType: 'car',
     brand: 'Ford',
     model: 'Mustang',
-    year: 2023,
+
     image: 'https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     images: [
       'https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -420,7 +420,7 @@ export const cars: CarType[] = [
     vehicleType: 'car',
     brand: 'Ford',
     model: 'mercedes',
-    year: 2023,
+
     image: 'https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     images: [
       'https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
@@ -459,7 +459,7 @@ export const cars: CarType[] = [
     available: true,
     seats: 4,
     doors: 2,
-    transmission: 'automatic',
+    transmission: 'manual',
     fuelType: 'gasoline',
     category: 'sedan',
     trunkCapacity: 'Small',
