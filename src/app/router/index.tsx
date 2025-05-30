@@ -14,6 +14,7 @@ import DashboardPage from "../../components/pages/admin/DashboardPage";
 import PaymentPage from "../../components/pages/PaymentPage";
 import SuccessPage from "../../components/pages/SuccessPage";
 import Chat from "../../components/pages/Chat";
+import About from "../../components/pages/AboutPage";
 
 const Router = () => (
   <Routes>
@@ -24,6 +25,7 @@ const Router = () => (
     <Route path="/dashboard" element={<DashboardPage />} />
     <Route path="/register" element={<RegisterPage />} />
     <Route path="/register/type" element={<RegisterTypePage />} />
+    <Route path="/about" element={<About />} />
     <Route path="/dashboard" element={<DashboardPage />} />
     <Route path="/chat" element={<Chat />} />
 
