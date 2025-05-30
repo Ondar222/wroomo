@@ -363,7 +363,7 @@ export const cars: CarType[] = [
   {
     id: 'car-003',
     name: 'Ford Mustang Convertible',
-    type: 'Хетчбэк',
+    type: 'Кабриолет',
     vehicleType: 'car',
     brand: 'Ford',
     model: 'Mustang',
@@ -408,10 +408,62 @@ export const cars: CarType[] = [
     doors: 2,
     transmission: 'automatic',
     fuelType: 'gasoline',
-    category: 'hatchback',
+    category: 'cabriolet',
     trunkCapacity: 'Small',
     airConditioned: true,
     drive: 'rear',  // задний привод
   },
-  // остальные машины по аналогии...
+  {
+    id: 'car-004',
+    name: 'Mercedes',
+    type: 'sedan',
+    vehicleType: 'car',
+    brand: 'Ford',
+    model: 'mercedes',
+    year: 2023,
+    image: 'https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    images: [
+      'https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/712614/pexels-photo-712614.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    ],
+    price: 95,
+    currency: '$',
+    location: 'Пхукет',
+    rating: 4.8,
+    reviewCount: 28,
+    description: 'Experience the thrill of driving a Ford Mustang Convertible along Phuket\'s scenic coastal roads. With the top down, you\'ll enjoy the ultimate driving experience with the wind in your hair and breathtaking views.',
+    features: [
+      'Convertible soft top',
+      'Premium audio system',
+      'Leather seats',
+      'Sport driving mode',
+      'LED signature lighting',
+    ],
+    specifications: [
+      {
+        name: 'Seats',
+        value: '4',
+        icon: 'users',
+      },
+      {
+        name: 'Doors',
+        value: '2',
+        icon: 'door',
+      },
+      {
+        name: 'Transmission',
+        value: 'Automatic',
+        icon: 'gear',
+      },
+    ],
+    available: true,
+    seats: 4,
+    doors: 2,
+    transmission: 'automatic',
+    fuelType: 'gasoline',
+    category: 'sedan',
+    trunkCapacity: 'Small',
+    airConditioned: true,
+    drive: 'rear',  // задний привод
+  },
 ];

@@ -7,7 +7,6 @@ type VehicleType = "all" | "car" | "motorcycle";
 type FilterType = {
   vehicleType: VehicleType;
   category: string;
-  year: string;
   transmission: string;
   fuelType: string;
   drive: string;
@@ -29,8 +28,7 @@ const VehicleFilter: React.FC<VehicleFilterProps> = ({ onFilterChange }) => {
 
   const [filter, setFilter] = useState<FilterType>({
     vehicleType: "all",
-    category: "all",
-    year: "all",
+    category: "all", // ✅ исправлено
     transmission: "all",
     fuelType: "all",
     drive: "all",
@@ -48,7 +46,7 @@ const VehicleFilter: React.FC<VehicleFilterProps> = ({ onFilterChange }) => {
   const categories = getUniqueValues(data, "category");
   const brands = getUniqueValues(data, "brand");
   const transmissions = getUniqueValues(data, "transmission");
-  const drivetrains = getUniqueValues(cars, "drive"); // только для авто
+  const drivetrains = getUniqueValues(cars, "drive");
   const locations = getUniqueValues(data, "location");
 
   const handleFilterChange = (updatedFields: Partial<FilterType>) => {
@@ -63,8 +61,7 @@ const VehicleFilter: React.FC<VehicleFilterProps> = ({ onFilterChange }) => {
   };
 
   useEffect(() => {
-    handleFilterChange({ vehicleType: activeType });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    handleFilterChange({ vehicleType: activeType, category: "all" });
   }, [activeType]);
 
   return (

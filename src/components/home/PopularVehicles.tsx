@@ -65,7 +65,7 @@ const PopularVehicles: React.FC = () => {
         (filter.transmission === "all" ||
           car.transmission === filter.transmission) &&
         (filter.fuelType === "all" || car.fuelType === filter.fuelType) &&
-        (filter.drivetrain === "all" || car.drive === filter.drive) &&
+        (filter.drive === "all" || car.drive === filter.drive) && // ✅ исправлено
         (filter.location === "all" || car.location === filter.location)
       );
     });
