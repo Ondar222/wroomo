@@ -21,6 +21,7 @@ export interface VehicleType {
     icon: string;
   }[];
   available: boolean;
+  category: string
 }
 
 export interface MotorcycleType extends VehicleType {

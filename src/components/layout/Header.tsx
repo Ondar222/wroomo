@@ -72,7 +72,7 @@ const NavLinks: React.FC<{
     { href: "/cars", text: t.cars },
     { href: "/locations", text: t.locations },
     { href: "/about", text: t.about },
-    { href: "/chat", text: t.chat }, // ← ДОБАВЛЕНО
+    { href: "/chat", text: t.chat },
   ];
 
   if (showDashboard) {
@@ -125,14 +125,8 @@ const Header: React.FC = () => {
     }
   }, [isMenuOpen]);
 
-  // Добавляем эффект для запрета скролла body, когда меню открыто
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    // очищаем на размонтировании компонента, чтобы сбросить overflow
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -209,14 +203,21 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          <button className="mobile-menu-button" onClick={toggleMenu}>
+          <button
+            className="mobile-menu-button"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Мобильное меню с анимацией с правой стороны */}
         {isMenuOpen && (
-          <div className="mobile-menu mobile-menu-open">
+          <div
+            className="mobile-menu mobile-menu-open"
+            role="dialog"
+            aria-modal="true"
+          >
             <NavLinks
               showDashboard={!!user}
               isMobile
@@ -224,7 +225,11 @@ const Header: React.FC = () => {
             />
 
             <div className="mobile-language-section">
-              <button className="mobile-language-button">
+              <button
+                className="mobile-language-button"
+                aria-haspopup="true"
+                aria-expanded="true"
+              >
                 <Globe size={18} />
                 <span>
                   {t.language}: {language.toUpperCase()}

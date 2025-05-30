@@ -1,5 +1,6 @@
 import React from "react";
 import { Phone, ArrowRight } from "lucide-react";
+import "../../styles/App.css";
 
 const AppDownload: React.FC = () => {
   return (
