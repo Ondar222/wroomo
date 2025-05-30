@@ -28,7 +28,7 @@ export interface MotorcycleType extends VehicleType {
   engineType: string;
   transmission: 'automatic' | 'manual';
   fuelType: string;
-  category: 'mini' | 'economy' | 'maxiscooter' | 'sport' | 'touring' | 'cruiser';
+  category: 'mini' | 'economy' | 'average' | 'maxi';
 }
 
 export interface CarType extends VehicleType {
@@ -39,4 +39,5 @@ export interface CarType extends VehicleType {
   category: 'hatchback' | 'sedan' | 'suv' | 'minivan' | 'pickup' | 'cabriolet' | 'van';
   trunkCapacity: string;
   airConditioned: boolean;
+  drive: 'rear' | 'full' | 'front'
 }

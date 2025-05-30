@@ -96,8 +96,8 @@ const MotorcycleDetailPage: React.FC = () => {
             <div className="spec-item">
               <Calendar size={20} />
               <div>
-                <div className="spec-name">Год</div>
-                <div className="spec-value">{motorcycle.year}</div>
+                <div className="spec-name">Категория</div>
+                <div className="spec-value">{motorcycle.category}</div>
               </div>
             </div>
           </div>

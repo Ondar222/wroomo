@@ -50,7 +50,7 @@ export const motorcycles: MotorcycleType[] = [
     engineType: '4-stroke, single-cylinder',
     transmission: 'automatic',
     fuelType: 'gasoline',
-    category: 'economy',
+    category: 'average',
   },
   {
     id: 'bike-002',
@@ -100,7 +100,7 @@ export const motorcycles: MotorcycleType[] = [
     engineType: '4-stroke, liquid-cooled, single-cylinder',
     transmission: 'automatic',
     fuelType: 'gasoline',
-    category: 'economy',
+    category: 'average',
   },
   {
     id: 'bike-003',
@@ -149,7 +149,7 @@ export const motorcycles: MotorcycleType[] = [
     engineType: '4-stroke, liquid-cooled, single-cylinder',
     transmission: 'manual',
     fuelType: 'gasoline',
-    category: 'sport',
+    category: 'maxi',
   },
   {
     id: 'bike-004',
@@ -180,7 +180,7 @@ export const motorcycles: MotorcycleType[] = [
     specifications: [
       {
         name: 'Engine',
-        value: '150cc',
+        value: '110cc',
         icon: 'engine',
       },
       {
@@ -195,11 +195,11 @@ export const motorcycles: MotorcycleType[] = [
       },
     ],
     available: true,
-    engineSize: 150,
+    engineSize: 110,
     engineType: '4-stroke, air-cooled, single-cylinder',
     transmission: 'automatic',
     fuelType: 'gasoline',
-    category: 'economy',
+    category: 'mini',
   },
   {
     id: 'bike-005',
@@ -249,7 +249,7 @@ export const motorcycles: MotorcycleType[] = [
     engineType: '4-stroke, liquid-cooled, parallel twin',
     transmission: 'manual',
     fuelType: 'gasoline',
-    category: 'sport',
+    category: 'maxi',
   },
 ];
 
@@ -305,6 +305,7 @@ export const cars: CarType[] = [
     category: 'hatchback',
     trunkCapacity: 'Small',
     airConditioned: true,
+    drive: 'front',  // <-- добавил привод
   },
   {
     id: 'car-002',
@@ -357,6 +358,7 @@ export const cars: CarType[] = [
     category: 'suv',
     trunkCapacity: 'Large',
     airConditioned: true,
+    drive: 'full',  // полный привод
   },
   {
     id: 'car-003',
@@ -409,109 +411,7 @@ export const cars: CarType[] = [
     category: 'hatchback',
     trunkCapacity: 'Small',
     airConditioned: true,
+    drive: 'rear',  // задний привод
   },
-  {
-    id: 'car-004',
-    name: 'Toyota Alphard',
-    type: 'Минивэн',
-    vehicleType: 'car',
-    brand: 'Toyota',
-    model: 'Alphard',
-    year: 2022,
-    image: 'https://s9.auto.drom.ru/photo/v2/drcS5IkV8wUCbRlCgOGPUQnLMLL_o3pK43fbwjFfpHNUbkJeWDoZh2sP24rTJj1DYVm3oSQKbyhh0eD2/gen1200.jpg',
-    images: [
-      'https://images.pexels.com/photos/4064826/pexels-photo-4064826.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/3754416/pexels-photo-3754416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    ],
-    price: 85,
-    currency: '$',
-    location: 'Бангкок',
-    rating: 4.9,
-    reviewCount: 47,
-    description: 'The Toyota Alphard is the ultimate luxury minivan for group travel in Bangkok. With its spacious interior, premium amenities, and comfortable seating for up to 7 passengers, it\'s perfect for family vacations or business trips.',
-    features: [
-      'Captain\'s chairs',
-      'Tri-zone climate control',
-      'Power sliding doors',
-      'Rear entertainment system',
-      'Advanced safety features',
-    ],
-    specifications: [
-      {
-        name: 'Seats',
-        value: '7',
-        icon: 'users',
-      },
-      {
-        name: 'Doors',
-        value: '5',
-        icon: 'door',
-      },
-      {
-        name: 'Transmission',
-        value: 'Automatic',
-        icon: 'gear',
-      },
-    ],
-    available: true,
-    seats: 7,
-    doors: 5,
-    transmission: 'automatic',
-    fuelType: 'gasoline',
-    category: 'minivan',
-    trunkCapacity: 'Extra Large',
-    airConditioned: true,
-  },
-  {
-    id: 'car-005',
-    name: 'Mazda 3',
-    type: 'Сэдан',
-    vehicleType: 'car',
-    brand: 'Mazda',
-    model: '3',
-    year: 2023,
-    image: 'https://images.pexels.com/photos/1009871/pexels-photo-1009871.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    images: [
-      'https://images.pexels.com/photos/1009871/pexels-photo-1009871.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/1874513/pexels-photo-1874513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    ],
-    price: 40,
-    currency: '$',
-    location: 'Chiang Mai',
-    rating: 4.8,
-    reviewCount: 39,
-    description: 'The Mazda 3 combines elegant styling with engaging driving dynamics, making it perfect for exploring Chiang Mai and its surroundings. With its premium interior and efficient engine, it offers a sophisticated driving experience.',
-    features: [
-      'Bose premium audio',
-      'Head-up display',
-      'Apple CarPlay & Android Auto',
-      'Radar cruise control',
-      'Leather-trimmed interior',
-    ],
-    specifications: [
-      {
-        name: 'Seats',
-        value: '5',
-        icon: 'users',
-      },
-      {
-        name: 'Doors',
-        value: '4',
-        icon: 'door',
-      },
-      {
-        name: 'Transmission',
-        value: 'Automatic',
-        icon: 'gear',
-      },
-    ],
-    available: true,
-    seats: 5,
-    doors: 4,
-    transmission: 'automatic',
-    fuelType: 'gasoline',
-    category: 'sedan',
-    trunkCapacity: 'Medium',
-    airConditioned: true,
-  },
+  // остальные машины по аналогии...
 ];

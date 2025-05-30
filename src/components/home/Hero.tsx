@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Search, Recycle as Motorcycle, Car } from "lucide-react";
-import "../../styles/Hero.css"; // We'll create this CSS file
+import "../../styles/Hero.css";
 
 const Hero: React.FC = () => {
   const [searchParams, setSearchParams] = useState({
     location: "",
     date: "",
-    vehicleType: "motorcycle", // 'motorcycle' or 'car'
+    vehicleType: "motorcycle",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,12 +27,10 @@ const Hero: React.FC = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Search parameters:", searchParams);
-    // Add search logic here
   };
 
   return (
     <div className="hero-container">
-      {/* Background image with overlay */}
       <div className="hero-background" />
 
       <div className="hero-content">
@@ -43,7 +41,6 @@ const Hero: React.FC = () => {
             от проверенных прокатных компаний и частных владельцев!
           </p>
 
-          {/* Search Form */}
           <form onSubmit={handleSearch} className="search-form">
             <div className="search-form-row">
               <div className="search-form-group">
@@ -79,7 +76,6 @@ const Hero: React.FC = () => {
               </div>
             </div>
 
-            {/* Vehicle Type Selection */}
             <div className="vehicle-type-container">
               <div className="vehicle-type-buttons">
                 <button
@@ -106,7 +102,6 @@ const Hero: React.FC = () => {
             </div>
           </form>
 
-          {/* Badges */}
           <div className="badges-container">
             <div className="badge">24/7 Поддержка</div>
             <div className="badge">Бесплатная отмена бронирования</div>

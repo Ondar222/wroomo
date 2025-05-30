@@ -228,3 +228,129 @@
   color: white;
   font-size: 0.875rem;
 }
+
+@media (min-width: 768px) {
+  .header-container {
+  }
+  .search-button {
+    font-size: 14px !important;
+  }
+}
+
+.search-button:hover {
+  background-color: #2c5282;
+}
+
+/* Vehicle Type Selection */
+.vehicle-type-container {
+  display: flex;
+  justify-content: center;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+.vehicle-type-buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.vehicle-type-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: #374151;
+  border-radius: 0.375rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  min-width: 90px;
+  justify-content: center;
+}
+
+.vehicle-type-button:hover {
+  background-color: #f3f4f6;
+}
+
+.vehicle-type-button.active {
+  background-color: #ebf8ff;
+  color: #ec307f;
+}
+
+.vehicle-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Badges */
+.badges-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  color: white;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* --- Мобильная адаптивность --- */
+@media (max-width: 480px) {
+  .header-container {
+  }
+  .hero-text h1 {
+    margin-top: 40px !important;
+    font-size: 16px;
+  }
+
+  .hero-text p {
+    font-size: 10px;
+  }
+
+  .search-form-row {
+    flex-direction: column;
+  }
+
+  .search-form-group {
+    font-size: 10px;
+  }
+
+  .search-button-container {
+    align-self: stretch;
+  }
+
+  .search-button {
+    font-size: 10px !important;
+  }
+
+  .vehicle-type-buttons {
+    gap: 1rem;
+  }
+
+  .vehicle-type-button {
+    min-width: 70px;
+    padding: 0.4rem 0.75rem;
+    font-size: 10px;
+  }
+
+  .badges-container {
+    gap: 0.5rem;
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 0.4rem 0.75rem;
+  }
+}
