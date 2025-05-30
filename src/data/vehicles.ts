@@ -262,10 +262,10 @@ export const cars: CarType[] = [
     brand: 'Toyota',
     model: 'Yaris',
 
-    image: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: 'https://chi-auto.ru/sites/default/files/styles/imgs_pages_auto/public/media/2024-08/5327804178346665599.jpg?itok=E82O0O5A',
     images: [
-      'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://chi-auto.ru/sites/default/files/styles/imgs_pages_auto/public/media/2024-08/5327804178346665599.jpg?itok=E82O0O5A',
+      'https://chi-auto.ru/sites/default/files/styles/imgs_pages_auto/public/media/2024-08/5327804178346665599.jpg?itok=E82O0O5A',
     ],
     price: 35,
     currency: '$',
@@ -315,10 +315,10 @@ export const cars: CarType[] = [
     brand: 'Honda',
     model: 'CR-V',
 
-    image: 'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: 'https://img1.oto.com.vn/crop/640x480/2024/06/14/dc563362-d711_wm.webp',
     images: [
-      'https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://img1.oto.com.vn/crop/640x480/2024/06/14/dc563362-d711_wm.webp',
+      'https://img1.oto.com.vn/crop/640x480/2024/06/14/dc563362-d711_wm.webp',
     ],
     price: 55,
     currency: '$',
@@ -418,13 +418,13 @@ export const cars: CarType[] = [
     name: 'Mercedes',
     type: 'sedan',
     vehicleType: 'car',
-    brand: 'Ford',
-    model: 'mercedes',
+    brand: 'mercedes',
+    model: 'benz',
 
-    image: 'https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    image: 'https://avatars.mds.yandex.net/get-verba/937147/2a0000018e8e98f50f6ceb7a3cc1f28fce40/456x342',
     images: [
-      'https://images.pexels.com/photos/631522/pexels-photo-631522.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-      'https://images.pexels.com/photos/712614/pexels-photo-712614.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://avatars.mds.yandex.net/get-verba/937147/2a0000018e8e98f50f6ceb7a3cc1f28fce40/456x342',
+      'https://avatars.mds.yandex.net/get-verba/937147/2a0000018e8e98f50f6ceb7a3cc1f28fce40/456x342',
     ],
     price: 95,
     currency: '$',
