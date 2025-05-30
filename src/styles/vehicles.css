@@ -4,6 +4,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  margin-top: 40px;
 }
 
 .page-header {
@@ -410,23 +411,58 @@
   top: 50%;
   transform: translateY(-50%);
 }
-
-@media (max-width: 768px) {
-  .thumbnail-grid {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 1.5rem;
   }
 
-  .price-section {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: flex-start;
+  .page-subtitle {
+    font-size: 1rem;
+    padding: 0 0.5rem;
   }
 
-  .specs-grid {
-    grid-template-columns: 1fr;
+  .filter-group {
+    min-width: unset;
+    width: 100%;
   }
 
-  .features-list {
-    grid-template-columns: 1fr;
+  .view-details-button,
+  .rent-button {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
+
+  .motorcycle-title,
+  .car-title {
+    font-size: 1rem;
+  }
+
+  .motorcycle-rating,
+  .car-rating {
+    font-size: 0.85rem;
+  }
+
+  .daily-price {
+    font-size: 1.2rem;
+  }
+
+  .motorcycle-header h1,
+  .car-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .description-section h2,
+  .specs-section h2,
+  .features-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .spec-item {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .thumbnail {
+    height: 80px;
   }
 }
