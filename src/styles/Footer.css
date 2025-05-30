@@ -45,7 +45,7 @@
 }
 
 .footer-description {
-  color: #9ca3af;
+  color: #ffffff;
   margin-bottom: 1rem;
   line-height: 1.5;
 }
@@ -63,7 +63,7 @@
 }
 
 .social-link {
-  color: #9ca3af;
+  color: #ffffff;
   transition: color 0.3s ease;
 }
 
@@ -79,7 +79,7 @@
 }
 
 .footer-link {
-  color: #9ca3af;
+  color: #ffffff;
   transition: color 0.3s ease;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .contact-icon {
-  color: #9ca3af;
+  color: #ffffff;
 }
 
 /* Payment methods */
