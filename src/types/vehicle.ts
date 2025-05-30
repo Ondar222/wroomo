@@ -5,7 +5,7 @@ export interface VehicleType {
   vehicleType: 'motorcycle' | 'car';
   brand: string;
   model: string;
-  year: number;
+  transmission: string;
   image: string;
   images: string[];
   price: number;
@@ -35,7 +35,7 @@ export interface MotorcycleType extends VehicleType {
 export interface CarType extends VehicleType {
   seats: number;
   doors: number;
-  transmission: 'automatic' | 'manual';
+  transmission:   'automatic' | 'manual';
   fuelType: string;
   category: 'hatchback' | 'sedan' | 'suv' | 'minivan' | 'pickup' | 'cabriolet' | 'van';
   trunkCapacity: string;
